@@ -23,7 +23,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                org.deschutter.eternica.init.Application
+                org.deschutter.eternica.init.ApplicationInitializer
             </param-value>
         </init-param>
     </servlet>

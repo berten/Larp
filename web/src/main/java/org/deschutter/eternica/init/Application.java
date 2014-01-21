@@ -73,4 +73,6 @@ public class Application extends WebMvcConfigurerAdapter {
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
+
+
 }
