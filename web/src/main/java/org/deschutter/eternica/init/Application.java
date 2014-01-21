@@ -1,12 +1,8 @@
 package org.deschutter.eternica.init;
 
-import org.deschutter.User;
-import org.deschutter.user.UserRepository;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -76,36 +72,5 @@ public class Application extends WebMvcConfigurerAdapter {
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
-    }
-
-    public static void main(String[] args) {
-        AbstractApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        UserRepository repository = context.getBean(UserRepository.class);
-
-        // save a couple of customers
-        repository.save(new User("Jack", "Bauer"));
-        repository.save(new User("Chloe", "O'Brian"));
-        repository.save(new User("Kim", "Bauer"));
-        repository.save(new User("David", "Palmer"));
-        repository.save(new User("Michelle", "Dessler"));
-
-        // fetch all customers
-        Iterable<User> customers = repository.findAll();
-        System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
-        for (User customer : customers) {
-            System.out.println(customer);
-        }
-        System.out.println();
-
-        // fetch an individual customer by ID
-        User customer = repository.findOne(1L);
-        System.out.println("Customer found with findOne(1L):");
-        System.out.println("--------------------------------");
-        System.out.println(customer);
-        System.out.println();
-
-
-        context.close();
     }
 }
