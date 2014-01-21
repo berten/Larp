@@ -1,4 +1,4 @@
-package org.deschutter;
+package org.deschutter.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

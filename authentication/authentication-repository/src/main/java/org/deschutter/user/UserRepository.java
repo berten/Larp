@@ -1,4 +1,4 @@
-package org.deschutter;
+package org.deschutter.user;
 
 import org.springframework.data.repository.CrudRepository;
 
