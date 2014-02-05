@@ -1,5 +1,8 @@
 package org.deschutter.authentication;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.deschutter.user.User;
 import org.deschutter.user.UserRepository;
 import org.slf4j.Logger;
@@ -13,9 +16,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class DBAuthenticationProvider implements AuthenticationProvider {
