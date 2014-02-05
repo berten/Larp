@@ -14,8 +14,7 @@ public class IndexController {
 
     @RequestMapping("/index")
     public ModelAndView helloWorld() {
-        userRepository.save(new User("Berten", "pwBerten"));
-        userRepository.save(new User("Tim", "pwTim"));
+
         return new ModelAndView("index", "users", userRepository.findAll());
     }
 }

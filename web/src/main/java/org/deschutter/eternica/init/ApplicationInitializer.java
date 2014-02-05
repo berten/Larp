@@ -5,9 +5,14 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+    }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
