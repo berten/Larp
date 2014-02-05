@@ -11,11 +11,13 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
 
@@ -25,12 +27,13 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
 @ComponentScan(basePackages = {"org.deschutter"})
 @EnableJpaRepositories("org.deschutter")
 @EnableWebMvc
-public class Application extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
         registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
         registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
     }
 
     @Override
@@ -39,11 +42,12 @@ public class Application extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/jsp/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
     }
 
     @Bean
@@ -73,6 +77,4 @@ public class Application extends WebMvcConfigurerAdapter {
     public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
-
-
 }
