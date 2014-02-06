@@ -15,17 +15,46 @@
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-model</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-repository</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
+            <!--<scope>runtime</scope>-->
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>authentication-service-impl</artifactId>
+            <version>${parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-repository</artifactId>
+            <version>${parent.version}</version>
+            <!--<scope>runtime</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-service</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-service-impl</artifactId>
+            <version>${parent.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>jstl</groupId>

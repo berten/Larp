@@ -5,8 +5,8 @@
     <title>User Overview</title>
 </head>
 <body>
-<c:forEach var="user" items="${users}">
-    <p>${user.username} pw: ${user.password}</p>
-</c:forEach>
+<%--<c:forEach var="user" items="${users}">--%>
+    <%--<p>${user.username} pw: ${user.password}</p>--%>
+<%--</c:forEach>--%>
 </body>
 </html>

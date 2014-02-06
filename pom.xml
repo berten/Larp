@@ -12,6 +12,7 @@
     <modules>
         <module>authentication</module>
         <module>web</module>
+        <module>character</module>
     </modules>
 
     <dependencies>

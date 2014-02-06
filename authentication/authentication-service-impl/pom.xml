@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>authentication-repository</artifactId>
+    <artifactId>authentication-service-impl</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>authentication-model</artifactId>
+            <artifactId>authentication-repository</artifactId>
             <version>${parent.version}</version>
         </dependency>
     </dependencies>

@@ -21,14 +21,13 @@ import org.springframework.stereotype.Component;
 public class DBAuthenticationProvider implements AuthenticationProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(DBAuthenticationProvider.class);
+
     @Autowired
     private UserRepository userRepository;
-
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        //Thread.dumpStack();
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
@@ -49,5 +48,4 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
-
 }

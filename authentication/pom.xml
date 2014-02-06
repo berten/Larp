@@ -13,6 +13,7 @@
         <module>authentication-model</module>
         <module>authentication-repository</module>
         <module>authentication-service</module>
+        <module>authentication-service-impl</module>
     </modules>
 
     <artifactId>authentication</artifactId>
