@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title></title>
+    <title>User Overview</title>
 </head>
 <body>
 <c:forEach var="user" items="${users}">

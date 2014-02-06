@@ -36,7 +36,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
 
-        return new Filter[] { new SiteMeshFilter() {},characterEncodingFilter,new DelegatingFilterProxy("springSecurityFilterChain")};
+        return new Filter[] { characterEncodingFilter,new DelegatingFilterProxy("springSecurityFilterChain"),new SiteMeshFilter() {}};
     }
 
 }
