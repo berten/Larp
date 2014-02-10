@@ -3,32 +3,22 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signin.css">
 </head>
 <body>
-<c:url value="login" var="loginUrl"/>
-<form action="${loginUrl}" method="post">
-    <c:if test="${param.error != null}">
-        <p>
-            Invalid username and password.
-        </p>
-    </c:if>
-    <c:if test="${param.logout != null}">
-        <p>
-            You have been logged out.
-        </p>
-    </c:if>
-    <p>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username"/>
-    </p>
-    <p>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password"/>
-    </p>
-    <input type="hidden"
-           name="${_csrf.parameterName}"
-           value="${_csrf.token}"/>
-    <button type="submit" class="btn">Log in</button>
-</form>
+<div class="container">
+
+    <form class="form-signin" role="form" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="form-control" placeholder="Username" required autofocus id="username" name="username">
+        <input type="password" class="form-control" placeholder="Password" required id="password" name="password">
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div>
 </body>
 </html>

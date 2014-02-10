@@ -10,7 +10,7 @@ import java.security.Principal;
 public class IndexController {
 
     @RequestMapping("/index")
-    public ModelAndView helloWorld(Principal principal) {
+    public ModelAndView index(Principal principal) {
         System.out.println(principal);
         return new ModelAndView("index");
     }

@@ -6,7 +6,9 @@
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon" />
     <decorator:head/>
+    <title><decorator:title/></title>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

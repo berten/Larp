@@ -10,27 +10,4 @@
         This is a simple web application with a source code organization
         based on the recommendations of the Application Developer's Guide.
     </description>
-
-    <!--<servlet>-->
-        <!--<servlet-name>eternica</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-        <!--<init-param>-->
-            <!--<param-name>contextClass</param-name>-->
-            <!--<param-value>-->
-                <!--org.springframework.web.context.support.AnnotationConfigWebApplicationContext-->
-            <!--</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>contextConfigLocation</param-name>-->
-            <!--<param-value>-->
-                <!--org.deschutter.eternica.init.ApplicationInitializer-->
-            <!--</param-value>-->
-        <!--</init-param>-->
-    <!--</servlet>-->
-
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>eternica</servlet-name>-->
-        <!--<url-pattern>/</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-</web-app>    
+</web-app>

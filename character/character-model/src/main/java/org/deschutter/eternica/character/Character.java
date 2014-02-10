@@ -9,7 +9,8 @@ public class Character {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-@ManyToOne(cascade = CascadeType.REMOVE)
+
+    @ManyToOne
 	private User user;
 
     private String name;

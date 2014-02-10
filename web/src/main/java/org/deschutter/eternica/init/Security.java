@@ -24,12 +24,12 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**"); // #3
+		web.ignoring().antMatchers("/resources/**","/css/**","/img/**","/js/**"); // #3
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().and().httpBasic().and().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+		http.formLogin().loginPage("/login").permitAll().and().httpBasic().and().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/epos/**").hasRole("USER")
 				.anyRequest().authenticated();
 	}
 }
