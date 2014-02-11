@@ -27,7 +27,7 @@ public class LoginControllerTest {
     private WebApplicationContext wac;
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     @Test
