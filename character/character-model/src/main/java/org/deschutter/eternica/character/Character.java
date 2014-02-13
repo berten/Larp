@@ -1,8 +1,8 @@
 package org.deschutter.eternica.character;
 
-import org.deschutter.user.User;
-
 import javax.persistence.*;
+
+import org.deschutter.user.User;
 
 @Entity
 public class Character {
@@ -10,29 +10,29 @@ public class Character {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-    @ManyToOne
+	@ManyToOne
 	private User user;
 
-    private String name;
+	private String name;
 
 	public Character(User user, String name) {
 		this.user = user;
-        this.name = name;
-    }
+		this.name = name;
+	}
 
 	protected Character() {
 
 	}
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 }

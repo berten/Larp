@@ -17,22 +17,15 @@ import org.springframework.stereotype.Service;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = {"org.deschutter"},excludeFilters =  {@ComponentScan.Filter(
-        value= Repository.class,
-        type = FilterType.ANNOTATION
-),@ComponentScan.Filter(
-        value= Controller.class,
-        type = FilterType.ANNOTATION
-),@ComponentScan.Filter(
-        value= Component.class,
-        type = FilterType.ANNOTATION
-),@ComponentScan.Filter(
-        value= Service.class,
-        type = FilterType.ANNOTATION
-)})
+@ComponentScan(basePackages = { "org.deschutter" }, excludeFilters = {
+		@ComponentScan.Filter(value = Repository.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Component.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Service.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Configuration.class) })
 public class Security extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private AuthenticationProvider authenticationProvider;
+	@Autowired
+	private AuthenticationProvider authenticationProvider;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -41,12 +34,13 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**","/css/**","/img/**","/js/**"); // #3
+		web.ignoring().antMatchers("/resources/**", "/css/**", "/img/**", "/js/**"); // #3
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/login").permitAll().and().httpBasic().and().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/epos/**").hasRole("USER")
-				.anyRequest().authenticated();
+		http.formLogin().loginPage("/login").permitAll().and().httpBasic().and().authorizeRequests()
+				.antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/epos/**").hasRole("USER").anyRequest()
+				.authenticated();
 	}
 }

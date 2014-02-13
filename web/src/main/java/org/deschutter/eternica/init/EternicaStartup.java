@@ -14,18 +14,18 @@ public class EternicaStartup implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	private UserRepository userRepository;
 
-    @Autowired
-    private CharacterRepository characterRepository;
+	@Autowired
+	private CharacterRepository characterRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-        characterRepository.deleteAll();
-        userRepository.deleteAll();
-        User berten = new User("Berten", "pwBerten");
-        userRepository.save(berten);
-        User tim = new User("Tim", "pwTim");
-        userRepository.save(tim);
-        characterRepository.save(new Character(berten, "Nilus"));
-        characterRepository.save(new Character(tim, "Bors"));
+		characterRepository.deleteAll();
+		userRepository.deleteAll();
+		User berten = new User("Berten", "pwBerten");
+		userRepository.save(berten);
+		User tim = new User("Tim", "pwTim");
+		userRepository.save(tim);
+		characterRepository.save(new Character(berten, "Nilus"));
+		characterRepository.save(new Character(tim, "Bors"));
 	}
 }

@@ -1,4 +1,4 @@
-package org.deschutter.eternica.authentication;
+package org.deschutter.eternica.index;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { WebConfig.class, TestConfig.class })
 @WebAppConfiguration
-public class LoginControllerTest {
+public class IndexControllerTest {
 
 	private MockMvc mockMvc;
 	@Autowired
@@ -32,8 +32,8 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void login() throws Exception {
-		mockMvc.perform(get("/login")).andExpect(status().isOk()).andExpect(view().name("login"))
+	public void index() throws Exception {
+		mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(view().name("index"))
 		/*
 		 * .andExpect(forwardedUrl("/WEB-INF/jsp/login.jsp")) .andExpect(model().attribute("todos", hasSize(2)))
 		 * .andExpect(model().attribute("todos", hasItem( allOf( hasProperty("id", is(1L)), hasProperty("description",

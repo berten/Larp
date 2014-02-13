@@ -7,12 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 @Configuration
-@ComponentScan(basePackages = {"org.deschutter"},excludeFilters =  {@ComponentScan.Filter(
-        value= Repository.class,
-        type = FilterType.ANNOTATION
-),@ComponentScan.Filter(
-        value= Controller.class,
-        type = FilterType.ANNOTATION
-)})
+@ComponentScan(basePackages = { "org.deschutter" }, excludeFilters = {
+		@ComponentScan.Filter(value = Repository.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION),
+		@ComponentScan.Filter(value = Configuration.class) })
 public class ApplicationConfig {
 }

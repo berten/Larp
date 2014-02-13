@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @ComponentScan(basePackages = { "org.deschutter" }, includeFilters = { @ComponentScan.Filter(value = Controller.class,
-		type = FilterType.ANNOTATION) })
+		type = FilterType.ANNOTATION) }, excludeFilters = { @ComponentScan.Filter(value = Configuration.class) })
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
