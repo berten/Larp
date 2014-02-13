@@ -14,12 +14,12 @@
     <dependencies>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>authentication-model</artifactId>
+            <artifactId>authentication-entities</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>authentication-repository</artifactId>
+            <artifactId>authentication-dao</artifactId>
             <version>${parent.version}</version>
             <!--<scope>runtime</scope>-->
         </dependency>
@@ -36,12 +36,12 @@
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>character-model</artifactId>
+            <artifactId>character-entities</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>character-repository</artifactId>
+            <artifactId>character-dao</artifactId>
             <version>${parent.version}</version>
             <!--<scope>runtime</scope>-->
         </dependency>

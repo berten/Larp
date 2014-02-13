@@ -10,10 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>authentication-model</module>
-        <module>authentication-repository</module>
+        <module>authentication-entities</module>
+        <module>authentication-dao</module>
         <module>authentication-service</module>
         <module>authentication-service-impl</module>
+        <module>authentication-model</module>
+        <module>authentication-repository</module>
+        <module>authentication-repository-impl</module>
     </modules>
 
     <artifactId>authentication</artifactId>

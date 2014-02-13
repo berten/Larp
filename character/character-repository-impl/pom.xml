@@ -3,24 +3,34 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>authentication</artifactId>
+        <artifactId>character</artifactId>
         <groupId>org.deschutter</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>authentication-service-impl</artifactId>
-
+    <artifactId>character-repository-impl</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>authentication-repository</artifactId>
+            <artifactId>character-repository</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>authentication-model</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>character-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-entities</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-dao</artifactId>
+            <version>${parent.version}</version>
         </dependency>
     </dependencies>
+
 </project>

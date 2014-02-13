@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>character-model</artifactId>
+    <artifactId>character-service-impl</artifactId>
 
 
 </project>

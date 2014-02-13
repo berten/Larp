@@ -10,8 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
+        <module>character-entities</module>
+        <module>character-dao</module>
+        <module>character-service</module>
+        <module>character-service-impl</module>
         <module>character-model</module>
         <module>character-repository</module>
+        <module>character-repository-impl</module>
     </modules>
 
     <artifactId>character</artifactId>
@@ -19,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>org.deschutter</groupId>
-            <artifactId>character-model</artifactId>
+            <artifactId>character-entities</artifactId>
             <version>${parent.version}</version>
         </dependency>
     </dependencies>
