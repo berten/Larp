@@ -3,8 +3,8 @@ package org.deschutter.authentication;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.deschutter.user.User;
-import org.deschutter.user.UserRepository;
+import org.deschutter.authentication.user.User;
+import org.deschutter.authentication.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
