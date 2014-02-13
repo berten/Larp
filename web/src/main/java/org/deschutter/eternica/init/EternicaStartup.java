@@ -2,7 +2,7 @@ package org.deschutter.eternica.init;
 
 import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterRepository;
-import org.deschutter.user.User;
+import org.deschutter.user.UserEntity;
 import org.deschutter.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -21,9 +21,9 @@ public class EternicaStartup implements ApplicationListener<ContextRefreshedEven
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		characterRepository.deleteAll();
 		userRepository.deleteAll();
-		User berten = new User("Berten", "pwBerten");
+		UserEntity berten = new UserEntity("Berten", "pwBerten");
 		userRepository.save(berten);
-		User tim = new User("Tim", "pwTim");
+		UserEntity tim = new UserEntity("Tim", "pwTim");
 		userRepository.save(tim);
 		characterRepository.save(new Character(berten, "Nilus"));
 		characterRepository.save(new Character(tim, "Bors"));

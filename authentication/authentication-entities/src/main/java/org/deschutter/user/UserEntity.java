@@ -1,12 +1,10 @@
 package org.deschutter.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class User {
+@Table(name = "USER")
+public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -14,12 +12,12 @@ public class User {
 	private String username;
 	private String password;
 
-	public User(String username, String password) {
+	public UserEntity(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
-	protected User() {
+	protected UserEntity() {
 	}
 
 	public String getUsername() {

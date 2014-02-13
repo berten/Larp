@@ -2,7 +2,7 @@ package org.deschutter.eternica.character;
 
 import javax.persistence.*;
 
-import org.deschutter.user.User;
+import org.deschutter.user.UserEntity;
 
 @Entity
 public class Character {
@@ -11,12 +11,12 @@ public class Character {
 	private long id;
 
 	@ManyToOne
-	private User user;
+	private UserEntity userEntity;
 
 	private String name;
 
-	public Character(User user, String name) {
-		this.user = user;
+	public Character(UserEntity userEntity, String name) {
+		this.userEntity = userEntity;
 		this.name = name;
 	}
 
@@ -28,8 +28,8 @@ public class Character {
 		return id;
 	}
 
-	public User getUser() {
-		return user;
+	public UserEntity getUserEntity() {
+		return userEntity;
 	}
 
 	public String getName() {
