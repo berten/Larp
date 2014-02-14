@@ -27,4 +27,8 @@ public class UserEntity {
 	public String getPassword() {
 		return password;
 	}
+
+    public Long getId() {
+        return id;
+    }
 }

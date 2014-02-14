@@ -3,12 +3,13 @@ package org.deschutter.authentication;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Collection;
 
-import org.deschutter.user.User;
-import org.deschutter.user.UserRepository;
+import org.deschutter.authentication.user.User;
+import org.deschutter.authentication.user.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +38,7 @@ public class DBAuthenticationProviderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		user = new User(USERNAME, PASSWORD);
+		user = mock(User.class);
 		when(userRepository.findByUsernameAndPassword(USERNAME, PASSWORD)).thenReturn(user);
 		authentication = new TestingAuthenticationToken(USERNAME, PASSWORD);
 	}
@@ -77,4 +78,5 @@ public class DBAuthenticationProviderTest {
 	public void supports_SupportsusernamePasswordToken() {
 		assertTrue(authenticationProvider.supports(UsernamePasswordAuthenticationToken.class));
 	}
+
 }

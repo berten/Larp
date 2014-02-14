@@ -5,7 +5,8 @@ import javax.persistence.*;
 import org.deschutter.user.UserEntity;
 
 @Entity
-public class Character {
+@Table(name = "CHARACTER")
+public class CharacterEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -15,24 +16,8 @@ public class Character {
 
 	private String name;
 
-	public Character(UserEntity userEntity, String name) {
+	public CharacterEntity(UserEntity userEntity, String name) {
 		this.userEntity = userEntity;
 		this.name = name;
-	}
-
-	protected Character() {
-
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public UserEntity getUserEntity() {
-		return userEntity;
-	}
-
-	public String getName() {
-		return name;
 	}
 }
