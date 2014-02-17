@@ -10,13 +10,14 @@ import java.util.List;
 public class CharacterRepositoryImpl implements CharacterRepository {
     @Autowired
     private CharacterDao characterDao;
+
     @Override
     public List<Character> findByUserId(long userId) {
         ArrayList<Character> characters = new ArrayList<Character>();
 
         List<CharacterEntity> entities = characterDao.findByUserEntityId(userId);
         for (CharacterEntity entity : entities) {
-            characters.add(new Character(entity.getName()));
+            characters.add(new Character(2L, entity.getName()));
         }
         return characters;
     }

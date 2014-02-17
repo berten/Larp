@@ -24,9 +24,9 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindByUserId() throws Exception {
         UserEntity user = new UserEntity("user1", "pass1");
-        when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(new CharacterEntity(user,"CharacterName1"),new CharacterEntity(user,"CharacterName2")));
+        when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(new CharacterEntity(user, "CharacterName1"), new CharacterEntity(user, "CharacterName2")));
         List<Character> characters = characterRepository.findByUserId(123);
-        assertThat(characters,hasItem(new Character("CharacterName1")));
-        assertThat(characters,hasItem(new Character("CharacterName2")));
+        assertThat(characters, hasItem(new Character(2L, "CharacterName1")));
+        assertThat(characters, hasItem(new Character(2L, "CharacterName2")));
     }
 }

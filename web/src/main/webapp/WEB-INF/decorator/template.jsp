@@ -7,7 +7,7 @@
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon" />
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="shortcut icon"/>
     <decorator:head/>
     <title><decorator:title/></title>
 </head>
@@ -36,7 +36,29 @@
                                         class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <c:forEach items="${item.menuItems}" var="childItem">
-                                        <li><a href="${childItem.url}">${childItem.display}</a></li>
+                                        <c:choose>
+                                            <c:when test="${empty childItem.display}">
+                                                <li class="divider"></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:choose>
+                                                    <c:when test="${empty childItem.url}">
+                                                        <li class="dropdown-header">${childItem.display}</li>
+                                                        <c:forEach items="${childItem.menuItems}" var="smallerChild">
+                                                            <li>
+                                                                <a href="${smallerChild.url}">${smallerChild.display}</a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </c:when>
+                                                    <c:otherwise>
+
+                                                        <li><a href="${childItem.url}">${childItem.display}</a></li>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </c:otherwise>
+
+                                        </c:choose>
                                     </c:forEach>
                                 </ul>
                             </li>
@@ -44,7 +66,8 @@
                     </c:choose>
                 </c:forEach>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </div>
 
@@ -54,7 +77,8 @@
         <decorator:body/>
     </div>
 
-</div><!-- /.container -->
+</div>
+<!-- /.container -->
 
 
 <!-- Bootstrap core JavaScript

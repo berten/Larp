@@ -1,6 +1,7 @@
 package org.deschutter.eternica.interceptor;
 
 import org.deschutter.authentication.user.User;
+import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,13 +33,56 @@ public class MenuInterceptor implements HandlerInterceptor {
         Principal principal = request.getUserPrincipal();
         if (principal != null) {
             User user = ((User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal());
+            modelAndView.addObject("menu", createLoggedInMenu(request.getContextPath(), characterService.getCharactersForUserID(user.getUserId())));
+        } else {
+            modelAndView.addObject("menu", createNotLoggedInMenu(request.getContextPath()));
         }
-        modelAndView.addObject("menu", createMenu(request.getContextPath()));
 
     }
 
-    private MenuDTO createMenu(String contextPath) {
-        return new MenuDTO().addMenuItem(new MenuItemDTO("Home", contextPath + "/index")).addMenuItem(new MenuItemDTO("Epos", null), new MenuItemDTO[]{new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"), new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"), new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com")}).addMenuItem(new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com"));
+
+    private MenuDTO createLoggedInMenu(String contextPath, List<Character> characters) {
+        List<MenuItemDTO> eposMenu = new ArrayList<>();
+        eposMenu.add(new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"));
+        eposMenu.add(new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"));
+        eposMenu.add(new MenuItemDTO(null, null));
+        MenuItemDTO karakters = new MenuItemDTO("Karakters", null);
+        eposMenu.add(karakters);
+        for (Character character : characters) {
+            karakters.add(new MenuItemDTO(character.getCharacterName(), contextPath + "/epos/character/" + character.getId()));
+        }
+        eposMenu.add(new MenuItemDTO(null, null));
+        eposMenu.add(createEternipediaMenuItem());
+
+        return createMenu(contextPath, eposMenu.toArray(new MenuItemDTO[]{}));
+    }
+
+    private MenuItemDTO createEternipediaMenuItem() {
+        return new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com");
+    }
+
+    private MenuDTO createMenu(String contextPath, MenuItemDTO[] eposMenuArray) {
+        return new MenuDTO()
+                .addMenuItem(createHomeMenuItem(contextPath))
+                .addMenuItem(new MenuItemDTO("Epos", null), eposMenuArray)
+                .addMenuItem(createIronFistMenuItem());
+    }
+
+    private MenuDTO createNotLoggedInMenu(String contextPath) {
+        MenuItemDTO[] eposMenuArray = {
+                new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"),
+                new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"),
+                new MenuItemDTO(null, null),
+                createEternipediaMenuItem()};
+        return createMenu(contextPath, eposMenuArray);
+    }
+
+    private MenuItemDTO createIronFistMenuItem() {
+        return new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com");
+    }
+
+    private MenuItemDTO createHomeMenuItem(String contextPath) {
+        return new MenuItemDTO("Home", contextPath + "/index");
     }
 
     public class MenuDTO {

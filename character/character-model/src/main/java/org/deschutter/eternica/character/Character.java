@@ -2,10 +2,16 @@ package org.deschutter.eternica.character;
 
 
 public class Character {
+    private long id;
     private String characterName;
 
-    public Character(String characterName) {
+    public Character(long id, String characterName) {
+        this.id = id;
         this.characterName = characterName;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getCharacterName() {
