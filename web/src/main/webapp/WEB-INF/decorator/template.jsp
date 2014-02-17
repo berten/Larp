@@ -27,8 +27,8 @@
             <ul class="nav navbar-nav">
                 <c:forEach items="${menu.menuItems}" var="item">
                     <c:choose>
-                        <c:when test="${ empty item.menuItems}">
-                            <li><a href="#">${item.display}</a></li>
+                        <c:when test="${empty item.menuItems}">
+                            <li><a href="${item.url}">${item.display}</a></li>
                         </c:when>
                         <c:otherwise>
                             <li class="dropdown">
@@ -36,7 +36,7 @@
                                         class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <c:forEach items="${item.menuItems}" var="childItem">
-                                        <li><a href="#">${childItem.display}</a></li>
+                                        <li><a href="${childItem.url}">${childItem.display}</a></li>
                                     </c:forEach>
                                 </ul>
                             </li>

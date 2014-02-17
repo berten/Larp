@@ -33,12 +33,12 @@ public class MenuInterceptor implements HandlerInterceptor {
         if (principal != null) {
             User user = ((User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal());
         }
-        modelAndView.addObject("menu", createMenu());
+        modelAndView.addObject("menu", createMenu(request.getContextPath()));
 
     }
 
-    private MenuDTO createMenu() {
-        return new MenuDTO().addMenuItem(new MenuItemDTO("Home", "/index")).addMenuItem(new MenuItemDTO("Epos", null), new MenuItemDTO[]{new MenuItemDTO("Algemeen", "/epos/algemeen"), new MenuItemDTO("Basisdocumenten", "/epos/basisdocumenten"), new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com")}).addMenuItem(new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com"));
+    private MenuDTO createMenu(String contextPath) {
+        return new MenuDTO().addMenuItem(new MenuItemDTO("Home", contextPath + "/index")).addMenuItem(new MenuItemDTO("Epos", null), new MenuItemDTO[]{new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"), new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"), new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com")}).addMenuItem(new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com"));
     }
 
     public class MenuDTO {
