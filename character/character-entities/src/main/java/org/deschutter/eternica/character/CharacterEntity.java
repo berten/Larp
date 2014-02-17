@@ -16,8 +16,16 @@ public class CharacterEntity {
 
 	private String name;
 
+
 	public CharacterEntity(UserEntity userEntity, String name) {
 		this.userEntity = userEntity;
 		this.name = name;
 	}
+
+    protected CharacterEntity() {
+    }
+
+    public String getName() {
+        return name;
+    }
 }

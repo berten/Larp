@@ -20,12 +20,4 @@
     </modules>
 
     <artifactId>character</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.deschutter</groupId>
-            <artifactId>character-entities</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-    </dependencies>
 </project>

@@ -15,67 +15,67 @@
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-entities</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-dao</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
 
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-service</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-service-impl</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
 
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-model</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
 
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-entities</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
 
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-dao</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
 
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-repository</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-repository-impl</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-service</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-service-impl</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-model</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

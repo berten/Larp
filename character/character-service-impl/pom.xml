@@ -10,6 +10,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>character-service-impl</artifactId>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-service</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-repository</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>character-model</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

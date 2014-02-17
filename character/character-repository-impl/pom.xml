@@ -14,22 +14,22 @@
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-repository</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-model</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-entities</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>character-dao</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 

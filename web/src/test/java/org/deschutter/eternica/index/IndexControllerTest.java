@@ -47,14 +47,10 @@ public class IndexControllerTest {
         when(user.getUserId()).thenReturn(123L);
         when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new Character("CharacterName1"),new Character("CharacterName2")));
 	}
-    @After
-    public void tearDown() {
-        SecurityContextHolder.getContext().setAuthentication(null);
-    }
 
 	@Test
 	public void index_NotLoggedIn() throws Exception {
-		mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(view().name("index"));
+		mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(view().name("index")).andExpect(model().attributeDoesNotExist("characterName"));
 
 	}
 

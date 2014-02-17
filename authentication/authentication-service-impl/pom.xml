@@ -15,7 +15,7 @@
         <dependency>
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-repository</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>

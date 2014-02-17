@@ -15,22 +15,22 @@
     <dependency>
         <groupId>org.deschutter</groupId>
         <artifactId>authentication-entities</artifactId>
-        <version>${parent.version}</version>
+        <version>${project.parent.version}</version>
     </dependency>
     <dependency>
         <groupId>org.deschutter</groupId>
         <artifactId>authentication-model</artifactId>
-        <version>${parent.version}</version>
+        <version>${project.parent.version}</version>
     </dependency>
     <dependency>
         <groupId>org.deschutter</groupId>
         <artifactId>authentication-dao</artifactId>
-        <version>${parent.version}</version>
+        <version>${project.parent.version}</version>
     </dependency>
     <dependency>
         <groupId>org.deschutter</groupId>
         <artifactId>authentication-repository</artifactId>
-        <version>${parent.version}</version>
+        <version>${project.parent.version}</version>
     </dependency>
 </dependencies>
 </project>
