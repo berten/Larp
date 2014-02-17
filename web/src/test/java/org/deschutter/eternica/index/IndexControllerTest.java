@@ -1,24 +1,15 @@
 package org.deschutter.eternica.index;
 
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import org.deschutter.authentication.user.User;
 import org.deschutter.eternica.TestConfig;
-import org.deschutter.eternica.character.*;
 import org.deschutter.eternica.character.Character;
-import org.deschutter.eternica.init.Security;
+import org.deschutter.eternica.character.CharacterService;
 import org.deschutter.eternica.init.WebConfig;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -27,6 +18,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
+
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { WebConfig.class, TestConfig.class })
@@ -65,7 +62,8 @@ public class IndexControllerTest {
 								hasItem(allOf(hasProperty("characterName", is("CharacterName1")), isA(IndexController.CharacterDTO.class)))))
 				.andExpect(
                         model().attribute("characters",
-                                hasItem(allOf(hasProperty("characterName", is("CharacterName2")), isA(IndexController.CharacterDTO.class)))));
-	}
+                                hasItem(allOf(hasProperty("characterName", is("CharacterName2")), isA(IndexController.CharacterDTO.class)))))
+                .andExpect(model().attribute("menu", "menu"));
+    }
 
 }
