@@ -42,7 +42,7 @@ public class MenuInterceptor implements HandlerInterceptor {
 
 
     private MenuDTO createLoggedInMenu(String contextPath, List<Character> characters) {
-        List<MenuItemDTO> eposMenu = new ArrayList<>();
+        List<MenuItemDTO> eposMenu = new ArrayList<MenuItemDTO>();
         eposMenu.add(new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"));
         eposMenu.add(new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"));
         eposMenu.add(new MenuItemDTO(null, null));
