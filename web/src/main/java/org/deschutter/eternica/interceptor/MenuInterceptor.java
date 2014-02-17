@@ -38,52 +38,59 @@ public class MenuInterceptor implements HandlerInterceptor {
     }
 
     private MenuDTO createMenu() {
-        return new MenuDTO().addMenuItem("Home").addMenuItem("Epos", new String[]{"Algemeen", "Basisdocumenten", "Eternipedia"}).addMenuItem("Iron Fist");
+        return new MenuDTO().addMenuItem(new MenuItemDTO("Home", "/index")).addMenuItem(new MenuItemDTO("Epos", null), new MenuItemDTO[]{new MenuItemDTO("Algemeen", "/epos/algemeen"), new MenuItemDTO("Basisdocumenten", "/epos/basisdocumenten"), new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com")}).addMenuItem(new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com"));
     }
 
     public class MenuDTO {
-        private List<MenuItemDTO> menuItems = new ArrayList<MenuItemDTO>();
+        private List<MenuItemDTO> menuItems = new ArrayList<>();
 
-        public MenuDTO addMenuItem(String display) {
-            menuItems.add(new MenuItemDTO(display));
+        public MenuDTO addMenuItem(MenuItemDTO display) {
+            menuItems.add(display);
             return this;
         }
 
-        public MenuDTO addMenuItem(String display, String[] childDisplays) {
-            MenuItemDTO menuItem = new MenuItemDTO(display);
-            for (String child : childDisplays) {
-                menuItem.add(new MenuItemDTO(child));
+        public MenuDTO addMenuItem(MenuItemDTO display, MenuItemDTO[] childDisplays) {
+            for (MenuItemDTO child : childDisplays) {
+                display.add(child);
             }
-            menuItems.add(menuItem);
+            menuItems.add(display);
             return this;
         }
 
-        public class MenuItemDTO {
-            private List<MenuItemDTO> menuItems = new ArrayList<MenuItemDTO>();
-            private String display;
-
-            public MenuItemDTO(String display) {
-
-                this.display = display;
-            }
-
-            public String getDisplay() {
-                return display;
-            }
-
-            public void add(MenuItemDTO menuItem) {
-                menuItems.add(menuItem);
-            }
-
-            public List<MenuItemDTO> getMenuItems() {
-                return menuItems;
-            }
-        }
 
         public List<MenuItemDTO> getMenuItems() {
             return menuItems;
         }
     }
+
+    public class MenuItemDTO {
+        private List<MenuItemDTO> menuItems = new ArrayList<MenuItemDTO>();
+        private String display;
+        private String url;
+
+        public MenuItemDTO(String display, String url) {
+
+            this.display = display;
+            this.url = url;
+        }
+
+        public String getDisplay() {
+            return display;
+        }
+
+        public void add(MenuItemDTO menuItem) {
+            menuItems.add(menuItem);
+        }
+
+        public List<MenuItemDTO> getMenuItems() {
+            return menuItems;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+    }
+
 
     @Override
     public void afterCompletion(HttpServletRequest request,

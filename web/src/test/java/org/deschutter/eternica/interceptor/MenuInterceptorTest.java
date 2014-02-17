@@ -38,20 +38,21 @@ public class MenuInterceptorTest {
                 .andExpect(
                         model().attribute("menu", hasProperty("menuItems",
                                 allOf(
-                                        hasItem(hasProperty("display", is("Home"))),
+                                        hasItem(allOf(hasProperty("display", is("Home")), hasProperty("url", is("/index")))),
                                         hasItem(
                                                 allOf(
                                                         hasProperty("display", is("Epos"))
+                                                        , hasProperty("url", isEmptyOrNullString())
                                                         , hasProperty("menuItems",
                                                         allOf(
-                                                                hasItem(hasProperty("display", is("Algemeen"))),
-                                                                hasItem(hasProperty("display", is("Basisdocumenten"))),
-                                                                hasItem(hasProperty("display", is("Eternipedia")))
+                                                                hasItem(allOf(hasProperty("display", is("Algemeen")), hasProperty("url", is("/epos/algemeen")))),
+                                                                hasItem(allOf(hasProperty("display", is("Basisdocumenten")), hasProperty("url", is("/epos/basisdocumenten")))),
+                                                                hasItem(allOf(hasProperty("display", is("Eternipedia")), hasProperty("url", is("http://eternipedia.eternica.com"))))
                                                         )
                                                 )
                                                 )
                                         ),
-                                        hasItem(hasProperty("display", is("Iron Fist")))
+                                        hasItem(allOf(hasProperty("display", is("Iron Fist")), hasProperty("url", is("http://ironfist.eternica.com"))))
                                 )
                         )));
     }
