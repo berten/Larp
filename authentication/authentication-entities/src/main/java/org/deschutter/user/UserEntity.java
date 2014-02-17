@@ -9,8 +9,10 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String username;
-	private String password;
+
+    private String username;
+
+    private String password;
 
 	public UserEntity(String username, String password) {
 		this.username = username;
@@ -30,5 +32,22 @@ public class UserEntity {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntity that = (UserEntity) o;
+
+        if (id != that.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }

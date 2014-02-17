@@ -1,8 +1,8 @@
 package org.deschutter.eternica.character;
 
-import javax.persistence.*;
-
 import org.deschutter.user.UserEntity;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CHARACTER")
@@ -27,5 +27,22 @@ public class CharacterEntity {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CharacterEntity that = (CharacterEntity) o;
+
+        if (id != that.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }

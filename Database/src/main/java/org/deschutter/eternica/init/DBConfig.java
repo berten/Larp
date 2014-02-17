@@ -1,9 +1,5 @@
 package org.deschutter.eternica.init;
 
-import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
-
-import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +14,15 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
+
+import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
+
 @Configuration
 @EnableJpaRepositories("org.deschutter")
 @ComponentScan(basePackages = { "org.deschutter" }, includeFilters = { @ComponentScan.Filter(value = Repository.class,
 		type = FilterType.ANNOTATION) }, excludeFilters = { @ComponentScan.Filter(value = Configuration.class) })
+
 public class DBConfig {
 	@Bean
 	public DataSource dataSource() {
