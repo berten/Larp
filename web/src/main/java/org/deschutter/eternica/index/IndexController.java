@@ -1,9 +1,5 @@
 package org.deschutter.eternica.index;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.deschutter.authentication.user.User;
 import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterService;
@@ -12,6 +8,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -32,8 +32,8 @@ public class IndexController {
 	}
 
     private List<CharacterDTO> mapToDTO(List<Character> characters) {
-        ArrayList<CharacterDTO> characterDTOs = new ArrayList<CharacterDTO>();
-		for (Character character : characters) {
+        ArrayList<CharacterDTO> characterDTOs = new ArrayList<>();
+        for (Character character : characters) {
 		characterDTOs.add(new CharacterDTO(character.getCharacterName()));
 		}
         return characterDTOs;

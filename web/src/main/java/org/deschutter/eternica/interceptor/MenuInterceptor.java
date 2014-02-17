@@ -42,7 +42,7 @@ public class MenuInterceptor implements HandlerInterceptor {
 
 
     private MenuDTO createLoggedInMenu(String contextPath, List<Character> characters) {
-        List<MenuItemDTO> eposMenu = new ArrayList<MenuItemDTO>();
+        @SuppressWarnings("Convert2Diamond") List<MenuItemDTO> eposMenu = new ArrayList<>();
         eposMenu.add(new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"));
         eposMenu.add(new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"));
         eposMenu.add(new MenuItemDTO(null, null));
@@ -54,7 +54,7 @@ public class MenuInterceptor implements HandlerInterceptor {
         eposMenu.add(new MenuItemDTO(null, null));
         eposMenu.add(createEternipediaMenuItem());
 
-        return createMenu(contextPath, eposMenu.toArray(new MenuItemDTO[]{}));
+        return createMenu(contextPath, eposMenu.toArray(new MenuItemDTO[eposMenu.size()]));
     }
 
     private MenuItemDTO createEternipediaMenuItem() {
@@ -108,7 +108,7 @@ public class MenuInterceptor implements HandlerInterceptor {
     }
 
     public class MenuItemDTO {
-        private List<MenuItemDTO> menuItems = new ArrayList<MenuItemDTO>();
+        private List<MenuItemDTO> menuItems = new ArrayList<>();
         private String display;
         private String url;
 

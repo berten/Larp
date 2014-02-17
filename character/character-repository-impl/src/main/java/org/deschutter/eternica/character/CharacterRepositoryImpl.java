@@ -13,7 +13,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
 
     @Override
     public List<Character> findByUserId(long userId) {
-        ArrayList<Character> characters = new ArrayList<Character>();
+        @SuppressWarnings("Convert2Diamond") ArrayList<Character> characters = new ArrayList<>();
 
         List<CharacterEntity> entities = characterDao.findByUserEntityId(userId);
         for (CharacterEntity entity : entities) {
