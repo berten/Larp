@@ -26,44 +26,43 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { WebConfig.class, TestConfig.class })
+@ContextConfiguration(classes = {WebConfig.class, TestConfig.class})
 @WebAppConfiguration
 public class IndexControllerTest {
 
-	private MockMvc mockMvc;
-	@Autowired
-	private WebApplicationContext wac;
+    private MockMvc mockMvc;
+    @Autowired
+    private WebApplicationContext wac;
     @Autowired
     private CharacterService characterService;
     private User user;
 
     @Before
-	public void setup() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    public void setup() {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         user = mock(User.class);
         when(user.getUserId()).thenReturn(123L);
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new Character("CharacterName1"),new Character("CharacterName2")));
-	}
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new Character("CharacterName1"), new Character("CharacterName2")));
+    }
 
-	@Test
-	public void index_NotLoggedIn() throws Exception {
-		mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(view().name("index")).andExpect(model().attributeDoesNotExist("characterName"));
+    @Test
+    public void index_NotLoggedIn() throws Exception {
+        mockMvc.perform(get("/index")).andExpect(status().isOk()).andExpect(view().name("index")).andExpect(model().attributeDoesNotExist("characterName"));
 
-	}
+    }
 
-	@Test
-	public void index_LoggedIn() throws Exception {
+    @Test
+    public void index_LoggedIn() throws Exception {
         mockMvc.perform(get("/index").principal(new UsernamePasswordAuthenticationToken(user, "password")))
-				.andExpect(status().isOk())
-				.andExpect(view().name("index"))
-				.andExpect(model().attribute("characters", hasSize(2)))
-				.andExpect(
-						model().attribute("characters",
-								hasItem(allOf(hasProperty("characterName", is("CharacterName1")), isA(IndexController.CharacterDTO.class)))))
-				.andExpect(
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"))
+                .andExpect(model().attribute("characters", hasSize(2)))
+                .andExpect(
                         model().attribute("characters",
-                                hasItem(allOf(hasProperty("characterName", is("CharacterName2")), isA(IndexController.CharacterDTO.class)))))
-                .andExpect(model().attribute("menu", "menu"));
+                                hasItem(allOf(hasProperty("characterName", is("CharacterName1")), isA(IndexController.CharacterDTO.class)))))
+                .andExpect(
+                        model().attribute("characters",
+                                hasItem(allOf(hasProperty("characterName", is("CharacterName2")), isA(IndexController.CharacterDTO.class)))));
     }
 
 }
