@@ -36,7 +36,7 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
         LOG.debug(message);
         if (user != null) {
             List<GrantedAuthority> grantedAuths = new ArrayList<>();
-            grantedAuths.add(new SimpleGrantedAuthority("USER"));
+            grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
             return new UsernamePasswordAuthenticationToken(user, authentication, grantedAuths);
         } else {
             String error = String.format("Invalid credentials [%s]", message);

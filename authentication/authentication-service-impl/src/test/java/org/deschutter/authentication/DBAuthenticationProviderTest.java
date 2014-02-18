@@ -60,7 +60,7 @@ public class DBAuthenticationProviderTest {
 		Authentication authentication = authenticationProvider.authenticate(this.authentication);
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		assertEquals(1, authorities.size());
-		assertEquals("USER", authorities.iterator().next().getAuthority());
+		assertEquals("ROLE_USER", authorities.iterator().next().getAuthority());
 	}
 
 	@Test(expected = BadCredentialsException.class)

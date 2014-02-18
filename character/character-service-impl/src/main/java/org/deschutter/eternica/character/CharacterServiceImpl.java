@@ -21,4 +21,9 @@ public class CharacterServiceImpl implements CharacterService {
 		}
 		return characterDTOs;
 	}
+
+    @Override
+    public CharacterDTO getCharacter(Long characterId) {
+        return null;
+    }
 }
