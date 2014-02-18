@@ -1,5 +1,6 @@
 package org.deschutter.eternica.character;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +15,9 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     @Override
     public List<Character> findByUserId(long userId) {
         ArrayList<Character> characters = new ArrayList<>();
-
         List<CharacterEntity> entities = characterDao.findByUserEntityId(userId);
         for (CharacterEntity entity : entities) {
-            characters.add(new Character(entity.getId(), entity.getName()));
+            characters.add(new DozerBeanMapper().map(entity,Character.class));
         }
         return characters;
     }

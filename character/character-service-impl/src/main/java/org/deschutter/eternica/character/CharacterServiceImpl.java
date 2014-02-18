@@ -3,6 +3,7 @@ package org.deschutter.eternica.character;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class CharacterServiceImpl implements CharacterService {
 		List<Character> characters = characterRepository.findByUserId(userId);
 		ArrayList<CharacterDTO> characterDTOs = new ArrayList<>();
 		for (Character character : characters) {
-			characterDTOs.add(new CharacterDTO(character.getId(), character.getCharacterName()));
+			characterDTOs.add(new DozerBeanMapper().map(character,CharacterDTO.class));
 		}
 		return characterDTOs;
 	}

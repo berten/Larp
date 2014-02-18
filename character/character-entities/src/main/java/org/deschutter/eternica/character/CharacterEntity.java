@@ -1,6 +1,7 @@
 package org.deschutter.eternica.character;
 
 import org.deschutter.user.UserEntity;
+import org.dozer.Mapping;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class CharacterEntity {
 	@ManyToOne
 	private UserEntity userEntity;
 
+    @Mapping("characterName")
 	private String name;
 
 
@@ -48,5 +50,9 @@ public class CharacterEntity {
 
     public long getId() {
         return id;
+    }
+
+    void setId(long id) {
+        this.id = id;
     }
 }

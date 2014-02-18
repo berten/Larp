@@ -10,12 +10,23 @@ public class Character {
         this.characterName = characterName;
     }
 
+    public Character() {
+    }
+
     public long getId() {
         return id;
     }
 
     public String getCharacterName() {
         return characterName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
     @Override

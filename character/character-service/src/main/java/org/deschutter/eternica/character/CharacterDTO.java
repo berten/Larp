@@ -2,12 +2,23 @@ package org.deschutter.eternica.character;
 
 
 public class CharacterDTO {
-    private final Long id;
-    private final String characterName;
+    private Long id;
+    private String characterName;
 
     public CharacterDTO(Long id, String characterName) {
 
         this.id = id;
+        this.characterName = characterName;
+    }
+
+    public CharacterDTO() {
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCharacterName(String characterName) {
         this.characterName = characterName;
     }
 
