@@ -17,5 +17,10 @@
             <artifactId>authentication-entities</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>Database</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>

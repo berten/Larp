@@ -2,30 +2,28 @@ package org.deschutter.eternica.character;
 
 import org.deschutter.eternica.race.RaceEntity;
 import org.deschutter.user.UserEntity;
-import org.dozer.Mapping;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CHARACTER")
 public class CharacterEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@ManyToOne
-	private UserEntity userEntity;
+    @ManyToOne
+    private UserEntity userEntity;
 
-    @Mapping("characterName")
-	private String name;
+    private String name;
 
     @ManyToOne
     private RaceEntity race;
 
 
     public CharacterEntity(UserEntity userEntity, String name, RaceEntity race) {
-		this.userEntity = userEntity;
-		this.name = name;
+        this.userEntity = userEntity;
+        this.name = name;
         this.race = race;
     }
 
