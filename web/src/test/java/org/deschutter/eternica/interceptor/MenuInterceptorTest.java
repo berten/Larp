@@ -5,6 +5,7 @@ import org.deschutter.eternica.TestConfig;
 import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterService;
 import org.deschutter.eternica.init.WebConfig;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,22 +54,22 @@ public class MenuInterceptorTest {
                 .andExpect(
                         model().attribute("menu", hasProperty("menuItems",
                                 allOf(
-                                        hasItem(allOf(hasProperty("display", is("Home")), hasProperty("url", is("/index")))),
+                                        hasItemWithDisplayAndUrl("Home", "/index"),
                                         hasItem(
                                                 allOf(
                                                         hasProperty("display", is("Epos"))
                                                         , hasProperty("url", isEmptyOrNullString())
                                                         , hasProperty("menuItems",
                                                         allOf(
-                                                                hasItem(allOf(hasProperty("display", is("Algemeen")), hasProperty("url", is("/epos/algemeen")))),
-                                                                hasItem(allOf(hasProperty("display", is("Basisdocumenten")), hasProperty("url", is("/epos/basisdocumenten")))),
-                                                                hasItem(allOf(hasProperty("url", isEmptyOrNullString()), hasProperty("display", isEmptyOrNullString()))),
-                                                                hasItem(allOf(hasProperty("display", is("Eternipedia")), hasProperty("url", is("http://eternipedia.eternica.com"))))
+                                                                hasItemWithDisplayAndUrl("Algemeen", "/epos/algemeen"),
+                                                                hasItemWithDisplayAndUrl("Basisdocumenten", "/epos/basisdocumenten"),
+                                                                hasBlankLine(),
+                                                                hasItemWithDisplayAndUrl("Eternipedia", "http://eternipedia.eternica.com")
                                                         )
                                                 )
                                                 )
                                         ),
-                                        hasItem(allOf(hasProperty("display", is("Iron Fist")), hasProperty("url", is("http://ironfist.eternica.com"))))
+                                        hasItemWithDisplayAndUrl("Iron Fist", "http://ironfist.eternica.com")
                                 )
                         )));
     }
@@ -81,26 +82,33 @@ public class MenuInterceptorTest {
                 .andExpect(
                         model().attribute("menu", hasProperty("menuItems",
                                 allOf(
-                                        hasItem(allOf(hasProperty("display", is("Home")), hasProperty("url", is("/index")))),
-
+                                        hasItemWithDisplayAndUrl("Home", "/index"),
                                         hasItem(
                                                 allOf(
-                                                        hasProperty("display", is("Epos"))
-                                                        , hasProperty("url", isEmptyOrNullString())
-                                                        , hasProperty("menuItems",
+                                                        hasProperty("display", is("Epos")),
+                                                        hasProperty("url", isEmptyOrNullString()),
+                                                        hasProperty("menuItems",
                                                         allOf(
-                                                                hasItem(allOf(hasProperty("display", is("Algemeen")), hasProperty("url", is("/epos/algemeen")))),
-                                                                hasItem(allOf(hasProperty("display", is("Basisdocumenten")), hasProperty("url", is("/epos/basisdocumenten")))),
-                                                                hasItem(allOf(hasProperty("url", isEmptyOrNullString()), hasProperty("display", isEmptyOrNullString()))),
-                                                                hasItem(allOf(hasProperty("display", is("Karakters")), hasProperty("url", isEmptyOrNullString()), hasProperty("menuItems", allOf(hasItem(allOf(hasProperty("display", is("CharacterName1")), hasProperty("url", is("/epos/character/1")))), hasItem(allOf(hasProperty("display", is("CharacterName2")), hasProperty("url", is("/epos/character/2")))))))),
-                                                                hasItem(allOf(hasProperty("url", isEmptyOrNullString()), hasProperty("display", isEmptyOrNullString()))),
-                                                                hasItem(allOf(hasProperty("display", is("Eternipedia")), hasProperty("url", is("http://eternipedia.eternica.com"))))
+                                                                hasItemWithDisplayAndUrl("Algemeen", "/epos/algemeen"),
+                                                                hasItemWithDisplayAndUrl("Basisdocumenten", "/epos/basisdocumenten"),
+                                                                hasBlankLine(),
+                                                                hasItem(allOf(hasProperty("display", is("Karakters")), hasProperty("url", isEmptyOrNullString()), hasProperty("menuItems", allOf(hasItemWithDisplayAndUrl("CharacterName1", "/epos/character/1"), hasItemWithDisplayAndUrl("CharacterName2", "/epos/character/2"))))),
+                                                                hasBlankLine(),
+                                                                hasItemWithDisplayAndUrl("Eternipedia", "http://eternipedia.eternica.com")
                                                         )
-                                                )
+                                                    )
                                                 )
                                         ),
-                                        hasItem(allOf(hasProperty("display", is("Iron Fist")), hasProperty("url", is("http://ironfist.eternica.com"))))
+                                        hasItemWithDisplayAndUrl("Iron Fist", "http://ironfist.eternica.com")
                                 )
                         )));
+    }
+
+    private Matcher<Iterable<? super Object>> hasBlankLine() {
+        return hasItem(allOf(hasProperty("url", isEmptyOrNullString()), hasProperty("display", isEmptyOrNullString())));
+    }
+
+    private Matcher<Iterable<? super Object>> hasItemWithDisplayAndUrl(String display, String url) {
+        return hasItem(allOf(hasProperty("display", is(display)), hasProperty("url", is(url))));
     }
 }
