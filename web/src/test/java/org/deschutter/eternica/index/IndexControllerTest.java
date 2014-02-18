@@ -2,7 +2,6 @@ package org.deschutter.eternica.index;
 
 import org.deschutter.authentication.user.User;
 import org.deschutter.eternica.TestConfig;
-import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterDTO;
 import org.deschutter.eternica.character.CharacterService;
 import org.deschutter.eternica.init.WebConfig;
@@ -43,7 +42,7 @@ public class IndexControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         user = mock(User.class);
         when(user.getUserId()).thenReturn(123L);
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1"), new CharacterDTO(2L, "CharacterName2")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1", "RaceName1"), new CharacterDTO(2L, "CharacterName2", "RaceName1")));
     }
 
     @Test

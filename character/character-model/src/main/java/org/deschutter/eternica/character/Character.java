@@ -4,13 +4,23 @@ package org.deschutter.eternica.character;
 public class Character {
     private long id;
     private String characterName;
+    private String raceName;
 
-    public Character(long id, String characterName) {
+    public Character(long id, String characterName, String raceName) {
         this.id = id;
         this.characterName = characterName;
+        this.raceName = raceName;
     }
 
     public Character() {
+    }
+
+    public String getRaceName() {
+        return raceName;
+    }
+
+    public void setRaceName(String raceName) {
+        this.raceName = raceName;
     }
 
     public long getId() {

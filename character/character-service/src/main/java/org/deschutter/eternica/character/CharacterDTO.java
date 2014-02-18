@@ -4,11 +4,12 @@ package org.deschutter.eternica.character;
 public class CharacterDTO {
     private Long id;
     private String characterName;
+    private String raceName;
 
-    public CharacterDTO(Long id, String characterName) {
-
+    public CharacterDTO(Long id, String characterName, String raceName) {
         this.id = id;
         this.characterName = characterName;
+        this.raceName = raceName;
     }
 
     public CharacterDTO() {
@@ -28,6 +29,14 @@ public class CharacterDTO {
 
     public String getCharacterName() {
         return characterName;
+    }
+
+    public String getRaceName() {
+        return raceName;
+    }
+
+    public void setRaceName(String raceName) {
+        this.raceName = raceName;
     }
 
     @Override

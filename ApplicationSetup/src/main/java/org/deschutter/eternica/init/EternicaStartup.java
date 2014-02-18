@@ -25,7 +25,7 @@ public class EternicaStartup implements ApplicationListener<ContextRefreshedEven
 		userDao.save(berten);
 		UserEntity tim = new UserEntity("Tim", "pwTim");
 		userDao.save(tim);
-		characterDao.save(new CharacterEntity(berten, "Nilus"));
-		characterDao.save(new CharacterEntity(tim, "Bors"));
+		characterDao.save(new CharacterEntity(berten, "Nilus", new RaceEntity("RaceName1")));
+		characterDao.save(new CharacterEntity(tim, "Bors", new RaceEntity("RaceName1")));
 	}
 }

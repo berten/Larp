@@ -1,5 +1,6 @@
 package org.deschutter.eternica.character;
 
+import org.deschutter.eternica.race.RaceEntity;
 import org.deschutter.user.UserEntity;
 import org.dozer.Mapping;
 
@@ -18,11 +19,19 @@ public class CharacterEntity {
     @Mapping("characterName")
 	private String name;
 
+    @ManyToOne
+    private RaceEntity race;
 
-	public CharacterEntity(UserEntity userEntity, String name) {
+
+    public CharacterEntity(UserEntity userEntity, String name, RaceEntity race) {
 		this.userEntity = userEntity;
 		this.name = name;
-	}
+        this.race = race;
+    }
+
+    public RaceEntity getRace() {
+        return race;
+    }
 
     protected CharacterEntity() {
     }

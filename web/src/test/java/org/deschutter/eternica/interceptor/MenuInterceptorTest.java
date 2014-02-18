@@ -2,7 +2,6 @@ package org.deschutter.eternica.interceptor;
 
 import org.deschutter.authentication.user.User;
 import org.deschutter.eternica.TestConfig;
-import org.deschutter.eternica.character.Character;
 import org.deschutter.eternica.character.CharacterDTO;
 import org.deschutter.eternica.character.CharacterService;
 import org.deschutter.eternica.init.WebConfig;
@@ -45,7 +44,7 @@ public class MenuInterceptorTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         user = mock(User.class);
         when(user.getUserId()).thenReturn(123L);
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1"), new CharacterDTO(2L, "CharacterName2")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1", "RaceName1"), new CharacterDTO(2L, "CharacterName2", "RaceName1")));
     }
 
     @Test
@@ -77,7 +76,7 @@ public class MenuInterceptorTest {
 
     @Test
     public void index_LoggedIn_GetsBasicMenu() throws Exception {
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(1L, "CharacterName1"), new CharacterDTO(2L, "CharacterName2")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(1L, "CharacterName1", "RaceName1"), new CharacterDTO(2L, "CharacterName2", "RaceName1")));
         ResultActions index = mockMvc.perform(get("/index").principal(new UsernamePasswordAuthenticationToken(user, "password"))).andExpect(status().isOk()).andExpect(view().name("index"));
         index
                 .andExpect(
