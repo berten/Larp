@@ -39,6 +39,7 @@
             <groupId>org.deschutter</groupId>
             <artifactId>authentication-model</artifactId>
             <version>${project.parent.version}</version>
+
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>
@@ -96,6 +97,7 @@
             <groupId>org.deschutter</groupId>
             <artifactId>character-model</artifactId>
             <version>${project.parent.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.deschutter</groupId>

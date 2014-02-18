@@ -22,10 +22,10 @@ public class CharacterServiceImplTest {
 
     @Test
     public void getCharactersForUserId() {
-        Character character1 = new Character(2L, "CharacterName1");
+        Character character1 = new Character(1L, "CharacterName1");
         Character character2 = new Character(2L, "CharacterName2");
         when(characterRepository.findByUserId(123L)).thenReturn(Arrays.asList(character1, character2));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(character1));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(character2));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1")));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2")));
     }
 }

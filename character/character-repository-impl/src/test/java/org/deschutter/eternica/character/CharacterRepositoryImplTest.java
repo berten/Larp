@@ -24,9 +24,28 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindByUserId() throws Exception {
         UserEntity user = new UserEntity("user1", "pass1");
-        when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(new CharacterEntity(user, "CharacterName1"), new CharacterEntity(user, "CharacterName2")));
+        CharacterEntity character1 = new CharacterEntityStub(user, "CharacterName1").withId(1);
+        CharacterEntity character2 = new CharacterEntityStub(user, "CharacterName2").withId(2);
+        when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(character1, character2));
         List<Character> characters = characterRepository.findByUserId(123);
-        assertThat(characters, hasItem(new Character(2L, "CharacterName1")));
+        assertThat(characters, hasItem(new Character(1L, "CharacterName1")));
         assertThat(characters, hasItem(new Character(2L, "CharacterName2")));
+    }
+
+    private class CharacterEntityStub extends CharacterEntity{
+        private Long id;
+
+        public CharacterEntityStub(UserEntity user, String characterName) {
+            super(user, characterName);
+        }
+
+        public CharacterEntity withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public long getId() {
+            return id;
+        }
     }
 }

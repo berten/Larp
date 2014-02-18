@@ -25,14 +25,13 @@ public class Character {
 
         Character character = (Character) o;
 
-        if (characterName != null ? !characterName.equals(character.characterName) : character.characterName != null)
-            return false;
+        if (id != character.id) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return characterName != null ? characterName.hashCode() : 0;
+        return (int) (id ^ (id >>> 32));
     }
 }

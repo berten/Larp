@@ -45,4 +45,8 @@ public class CharacterEntity {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
+
+    public long getId() {
+        return id;
+    }
 }

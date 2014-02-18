@@ -1,7 +1,7 @@
 package org.deschutter.eternica.interceptor;
 
 import org.deschutter.authentication.user.User;
-import org.deschutter.eternica.character.Character;
+import org.deschutter.eternica.character.CharacterDTO;
 import org.deschutter.eternica.character.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,18 +37,17 @@ public class MenuInterceptor implements HandlerInterceptor {
         } else {
             modelAndView.addObject("menu", createNotLoggedInMenu(request.getContextPath()));
         }
-
     }
 
 
-    private MenuDTO createLoggedInMenu(String contextPath, List<Character> characters) {
+    private MenuDTO createLoggedInMenu(String contextPath, List<CharacterDTO> characters) {
         List<MenuItemDTO> eposMenu = new ArrayList<>();
         eposMenu.add(new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"));
         eposMenu.add(new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"));
         eposMenu.add(new MenuItemDTO(null, null));
         MenuItemDTO karakters = new MenuItemDTO("Karakters", null);
         eposMenu.add(karakters);
-        for (Character character : characters) {
+        for (CharacterDTO character : characters) {
             karakters.add(new MenuItemDTO(character.getCharacterName(), contextPath + "/epos/character/" + character.getId()));
         }
         eposMenu.add(new MenuItemDTO(null, null));

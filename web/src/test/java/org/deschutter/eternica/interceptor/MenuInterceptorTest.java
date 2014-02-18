@@ -3,6 +3,7 @@ package org.deschutter.eternica.interceptor;
 import org.deschutter.authentication.user.User;
 import org.deschutter.eternica.TestConfig;
 import org.deschutter.eternica.character.Character;
+import org.deschutter.eternica.character.CharacterDTO;
 import org.deschutter.eternica.character.CharacterService;
 import org.deschutter.eternica.init.WebConfig;
 import org.hamcrest.Matcher;
@@ -44,7 +45,7 @@ public class MenuInterceptorTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         user = mock(User.class);
         when(user.getUserId()).thenReturn(123L);
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new org.deschutter.eternica.character.Character(2L, "CharacterName1"), new Character(2L, "CharacterName2")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1"), new CharacterDTO(2L, "CharacterName2")));
     }
 
     @Test
@@ -76,7 +77,7 @@ public class MenuInterceptorTest {
 
     @Test
     public void index_LoggedIn_GetsBasicMenu() throws Exception {
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new Character(1L, "CharacterName1"), new Character(2L, "CharacterName2")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(1L, "CharacterName1"), new CharacterDTO(2L, "CharacterName2")));
         ResultActions index = mockMvc.perform(get("/index").principal(new UsernamePasswordAuthenticationToken(user, "password"))).andExpect(status().isOk()).andExpect(view().name("index"));
         index
                 .andExpect(
@@ -88,15 +89,15 @@ public class MenuInterceptorTest {
                                                         hasProperty("display", is("Epos")),
                                                         hasProperty("url", isEmptyOrNullString()),
                                                         hasProperty("menuItems",
-                                                        allOf(
-                                                                hasItemWithDisplayAndUrl("Algemeen", "/epos/algemeen"),
-                                                                hasItemWithDisplayAndUrl("Basisdocumenten", "/epos/basisdocumenten"),
-                                                                hasBlankLine(),
-                                                                hasItem(allOf(hasProperty("display", is("Karakters")), hasProperty("url", isEmptyOrNullString()), hasProperty("menuItems", allOf(hasItemWithDisplayAndUrl("CharacterName1", "/epos/character/1"), hasItemWithDisplayAndUrl("CharacterName2", "/epos/character/2"))))),
-                                                                hasBlankLine(),
-                                                                hasItemWithDisplayAndUrl("Eternipedia", "http://eternipedia.eternica.com")
+                                                                allOf(
+                                                                        hasItemWithDisplayAndUrl("Algemeen", "/epos/algemeen"),
+                                                                        hasItemWithDisplayAndUrl("Basisdocumenten", "/epos/basisdocumenten"),
+                                                                        hasBlankLine(),
+                                                                        hasItem(allOf(hasProperty("display", is("Karakters")), hasProperty("url", isEmptyOrNullString()), hasProperty("menuItems", allOf(hasItemWithDisplayAndUrl("CharacterName1", "/epos/character/1"), hasItemWithDisplayAndUrl("CharacterName2", "/epos/character/2"))))),
+                                                                        hasBlankLine(),
+                                                                        hasItemWithDisplayAndUrl("Eternipedia", "http://eternipedia.eternica.com")
+                                                                )
                                                         )
-                                                    )
                                                 )
                                         ),
                                         hasItemWithDisplayAndUrl("Iron Fist", "http://ironfist.eternica.com")

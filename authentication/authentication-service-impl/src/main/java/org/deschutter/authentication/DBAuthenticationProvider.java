@@ -35,7 +35,7 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
         User user = userRepository.findByUsernameAndPassword(username, password);
         LOG.debug(message);
         if (user != null) {
-            @SuppressWarnings("Convert2Diamond") List<GrantedAuthority> grantedAuths = new ArrayList<>();
+            List<GrantedAuthority> grantedAuths = new ArrayList<>();
             grantedAuths.add(new SimpleGrantedAuthority("USER"));
             return new UsernamePasswordAuthenticationToken(user, authentication, grantedAuths);
         } else {
