@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="jumbotron">
-   Character
+   <h1>${character.characterName}</h1>
 </div>
 </body>
 </html>

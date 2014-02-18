@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DBConfig.class})
@@ -29,7 +30,17 @@ public class CharacterDaoTest {
     public void testFindByUserEntityId() throws Exception {
         UserEntity userEntity = userDao.save(new UserEntity("username", "password"));
         CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1"));
+        CharacterEntity character2 = characterDao.save(new CharacterEntity(userEntity, "Character2"));
         Iterable<CharacterEntity> entities = characterDao.findAll();
         assertThat(entities, hasItem(character));
+        assertThat(entities, hasItem(character2));
+    }
+
+    @Test
+    public void findOne () {
+        UserEntity userEntity = userDao.save(new UserEntity("username", "password"));
+        CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1"));
+        CharacterEntity returnedEntity = characterDao.findOne(character.getId());
+        assertThat(returnedEntity,is(character));
     }
 }

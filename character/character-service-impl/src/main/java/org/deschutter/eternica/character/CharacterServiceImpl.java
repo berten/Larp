@@ -24,6 +24,6 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDTO getCharacter(Long characterId) {
-        return null;
+        return new DozerBeanMapper().map(characterRepository.findById(characterId),CharacterDTO.class);
     }
 }

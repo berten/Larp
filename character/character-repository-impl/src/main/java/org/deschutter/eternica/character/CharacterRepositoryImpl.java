@@ -21,4 +21,9 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         }
         return characters;
     }
+
+    @Override
+    public Character findById(long id) {
+        return new DozerBeanMapper().map(characterDao.findOne(id),Character.class);
+    }
 }

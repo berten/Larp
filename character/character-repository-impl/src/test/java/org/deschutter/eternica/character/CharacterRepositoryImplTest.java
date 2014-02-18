@@ -12,6 +12,9 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,5 +35,14 @@ public class CharacterRepositoryImplTest {
         List<Character> characters = characterRepository.findByUserId(123);
         assertThat(characters, hasItem(new Character(1L, "CharacterName1")));
         assertThat(characters, hasItem(new Character(2L, "CharacterName2")));
+    }
+
+    @Test
+    public void testFindById () {
+        UserEntity user = new UserEntity("user1", "pass1");
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1");
+        character.setId(1L);
+        when(characterDao.findOne(1L)).thenReturn(character);
+        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1"))));
     }
 }

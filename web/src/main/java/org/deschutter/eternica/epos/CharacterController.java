@@ -1,5 +1,6 @@
 package org.deschutter.eternica.epos;
 
+import org.deschutter.eternica.character.CharacterDTO;
 import org.deschutter.eternica.character.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ public class CharacterController {
 
     @RequestMapping("/epos/character/{characterId}")
     public ModelAndView characterView(@PathVariable Long characterId) {
-        return new ModelAndView("epos/character","character",characterService.getCharacter(characterId));
+        CharacterDTO character = characterService.getCharacter(characterId);
+        return new ModelAndView("epos/character","character", character);
     }
 }
