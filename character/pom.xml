@@ -18,6 +18,6 @@
         <module>character-repository</module>
         <module>character-repository-impl</module>
     </modules>
-
+    <groupId>org.deschutter.omen</groupId>
     <artifactId>character</artifactId>
 </project>

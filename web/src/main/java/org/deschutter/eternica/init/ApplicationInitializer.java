@@ -1,14 +1,13 @@
 package org.deschutter.eternica.init;
 
-import javax.servlet.Filter;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
@@ -31,8 +30,13 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 		return new String[] { "/" };
 	}
 
-	@Override
-	protected Filter[] getServletFilters() {
+    @Override
+    protected String getServletName() {
+        return "Omen";
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
 
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");

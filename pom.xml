@@ -11,7 +11,7 @@
 
     <modules>
         <module>authentication</module>
-        <module>web</module>
+        <module>omen-web</module>
         <module>character</module>
         <module>ApplicationSetup</module>
         <module>Database</module>
