@@ -1,6 +1,6 @@
 package org.deschutter.user;
 
-import org.deschutter.eternica.init.DBConfig;
+import org.deschutter.database.init.DBConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
