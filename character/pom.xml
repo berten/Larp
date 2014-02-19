@@ -10,14 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>character-entities</module>
-        <module>character-dao</module>
-        <module>character-service</module>
-        <module>character-service-impl</module>
-        <module>character-model</module>
-        <module>character-repository</module>
-        <module>character-repository-impl</module>
+        <module>omen-character-entities</module>
+        <module>omen-character-dao</module>
+        <module>omen-character-service</module>
+        <module>omen-character-service-impl</module>
+        <module>omen-character-model</module>
+        <module>omen-character-repository</module>
+        <module>omen-character-repository-impl</module>
     </modules>
     <groupId>org.deschutter.omen</groupId>
-    <artifactId>character</artifactId>
+    <artifactId>omen-character</artifactId>
 </project>

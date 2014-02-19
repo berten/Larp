@@ -12,7 +12,7 @@
     <modules>
         <module>authentication</module>
         <module>omen-web</module>
-        <module>character</module>
+        <module>omen-character</module>
         <module>ApplicationSetup</module>
         <module>Database</module>
     </modules>

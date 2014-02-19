@@ -55,19 +55,19 @@
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-entities</artifactId>
+            <artifactId>omen-character-entities</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-dao</artifactId>
+            <artifactId>omen-character-dao</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-repository</artifactId>
+            <artifactId>omen-character-repository</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
@@ -78,24 +78,24 @@
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-repository-impl</artifactId>
+            <artifactId>omen-character-repository-impl</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-service</artifactId>
+            <artifactId>omen-character-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-service-impl</artifactId>
+            <artifactId>omen-character-service-impl</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
-            <artifactId>character-model</artifactId>
+            <artifactId>omen-character-model</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
