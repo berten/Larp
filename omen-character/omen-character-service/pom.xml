@@ -8,14 +8,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>omen-character-repository</artifactId>
     <groupId>org.deschutter.omen</groupId>
+    <artifactId>omen-character-service</artifactId>
     <dependencies>
-    <dependency>
-        <groupId>org.deschutter.omen</groupId>
-        <artifactId>omen-character-model</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-character-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
