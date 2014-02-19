@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.deschutter.omen</groupId>
-    <artifactId>character-service-impl</artifactId>
+    <artifactId>omen-character-service-impl</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
