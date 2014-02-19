@@ -1,9 +1,9 @@
 package org.deschutter.omen.init;
 
-import org.deschutter.eternica.character.CharacterDao;
-import org.deschutter.eternica.character.CharacterEntity;
-import org.deschutter.eternica.race.RaceDao;
-import org.deschutter.eternica.race.RaceEntity;
+import org.deschutter.omen.character.CharacterDao;
+import org.deschutter.omen.character.CharacterEntity;
+import org.deschutter.omen.race.RaceDao;
+import org.deschutter.omen.race.RaceEntity;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
