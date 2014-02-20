@@ -18,17 +18,17 @@ public class CharacterEntity {
     private String name;
 
     @ManyToOne
-    private LineageEntity race;
+    private LineageEntity lineage;
 
 
-    public CharacterEntity(UserEntity userEntity, String name, LineageEntity race) {
+    public CharacterEntity(UserEntity userEntity, String name, LineageEntity lineage) {
         this.userEntity = userEntity;
         this.name = name;
-        this.race = race;
+        this.lineage = lineage;
     }
 
-    public LineageEntity getRace() {
-        return race;
+    public LineageEntity getLineage() {
+        return lineage;
     }
 
     protected CharacterEntity() {

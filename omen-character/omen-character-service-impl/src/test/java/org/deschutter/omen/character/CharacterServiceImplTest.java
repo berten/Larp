@@ -23,17 +23,17 @@ public class CharacterServiceImplTest {
 
     @Test
     public void getCharactersForUserId() {
-        org.deschutter.omen.character.Character character1 = new Character(1L, "CharacterName1", "RaceName1");
-        Character character2 = new Character(2L, "CharacterName2", "RaceName1");
+        org.deschutter.omen.character.Character character1 = new Character(1L, "CharacterName1", "Lineage1");
+        Character character2 = new Character(2L, "CharacterName2", "Lineage1");
         when(characterRepository.findByUserId(123L)).thenReturn(Arrays.asList(character1, character2));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1", "RaceName1")));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2", "RaceName1")));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1", "Lineage1")));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2", "Lineage1")));
     }
 
     @Test
     public void getCharacter () {
-        Character character = new Character(1L, "CharacterName1", "RaceName1");
+        Character character = new Character(1L, "CharacterName1", "Lineage1");
         when(characterRepository.findById(1L)).thenReturn(character);
-        assertThat(characterService.getCharacter(1L), allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("raceName",is("RaceName1"))));
+        assertThat(characterService.getCharacter(1L), allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("lineageName",is("Lineage1"))));
     }
 }

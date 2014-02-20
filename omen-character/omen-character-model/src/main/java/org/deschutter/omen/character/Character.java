@@ -4,23 +4,23 @@ package org.deschutter.omen.character;
 public class Character {
     private long id;
     private String characterName;
-    private String raceName;
+    private String lineageName;
 
-    public Character(long id, String characterName, String raceName) {
+    public Character(long id, String characterName, String lineageName) {
         this.id = id;
         this.characterName = characterName;
-        this.raceName = raceName;
+        this.lineageName = lineageName;
     }
 
     public Character() {
     }
 
-    public String getRaceName() {
-        return raceName;
+    public String getLineageName() {
+        return lineageName;
     }
 
-    public void setRaceName(String raceName) {
-        this.raceName = raceName;
+    public void setLineageName(String lineageName) {
+        this.lineageName = lineageName;
     }
 
     public long getId() {

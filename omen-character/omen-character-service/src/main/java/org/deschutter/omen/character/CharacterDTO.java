@@ -4,12 +4,12 @@ package org.deschutter.omen.character;
 public class CharacterDTO {
     private Long id;
     private String characterName;
-    private String raceName;
+    private String lineageName;
 
-    public CharacterDTO(Long id, String characterName, String raceName) {
+    public CharacterDTO(Long id, String characterName, String lineageName) {
         this.id = id;
         this.characterName = characterName;
-        this.raceName = raceName;
+        this.lineageName = lineageName;
     }
 
     public CharacterDTO() {
@@ -31,12 +31,12 @@ public class CharacterDTO {
         return characterName;
     }
 
-    public String getRaceName() {
-        return raceName;
+    public String getLineageName() {
+        return lineageName;
     }
 
-    public void setRaceName(String raceName) {
-        this.raceName = raceName;
+    public void setLineageName(String lineageName) {
+        this.lineageName = lineageName;
     }
 
     @Override
