@@ -2,8 +2,8 @@ package org.deschutter.omen.init;
 
 import org.deschutter.omen.character.CharacterDao;
 import org.deschutter.omen.character.CharacterEntity;
+import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.RaceDao;
-import org.deschutter.omen.race.RaceEntity;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 		userDao.deleteAll();
         UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
         UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
-        RaceEntity race = raceDao.save(new RaceEntity("Mensch"));
+        LineageEntity race = raceDao.save(new LineageEntity("Mensch"));
         characterDao.save(new CharacterEntity(berten, "Nilus", race));
         characterDao.save(new CharacterEntity(tim, "Bors", race));
     }

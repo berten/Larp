@@ -1,6 +1,6 @@
 package org.deschutter.omen.character;
 
-import org.deschutter.omen.race.RaceEntity;
+import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.user.UserEntity;
 
 import javax.persistence.*;
@@ -18,16 +18,16 @@ public class CharacterEntity {
     private String name;
 
     @ManyToOne
-    private RaceEntity race;
+    private LineageEntity race;
 
 
-    public CharacterEntity(UserEntity userEntity, String name, RaceEntity race) {
+    public CharacterEntity(UserEntity userEntity, String name, LineageEntity race) {
         this.userEntity = userEntity;
         this.name = name;
         this.race = race;
     }
 
-    public RaceEntity getRace() {
+    public LineageEntity getRace() {
         return race;
     }
 

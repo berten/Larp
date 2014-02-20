@@ -1,6 +1,7 @@
 package org.deschutter.omen.race;
 
 import org.deschutter.database.init.DBConfig;
+import org.deschutter.omen.lineage.LineageEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class RaceDaoTest {
 
     @Test
     public void save_findOne() {
-        RaceEntity entity = raceDao.save(new RaceEntity("name"));
-        RaceEntity retrieved = raceDao.findOne(entity.getId());
+        LineageEntity entity = raceDao.save(new LineageEntity("name"));
+        LineageEntity retrieved = raceDao.findOne(entity.getId());
         assertThat(retrieved, allOf(hasProperty("name", is(entity.getName())), hasProperty("id", is(entity.getId()))));
     }
 }

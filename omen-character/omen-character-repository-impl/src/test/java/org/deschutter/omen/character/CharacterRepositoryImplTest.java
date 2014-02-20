@@ -1,6 +1,6 @@
 package org.deschutter.omen.character;
 
-import org.deschutter.omen.race.RaceEntity;
+import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.user.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,9 +26,9 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindByUserId() throws Exception {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character1 = new CharacterEntity(user, "CharacterName1", new RaceEntity("RaceName1"));
+        CharacterEntity character1 = new CharacterEntity(user, "CharacterName1", new LineageEntity("RaceName1"));
         character1.setId(1L);
-        CharacterEntity character2 = new CharacterEntity(user, "CharacterName2", new RaceEntity("RaceName1"));
+        CharacterEntity character2 = new CharacterEntity(user, "CharacterName2", new LineageEntity("RaceName1"));
         character2.setId(2L);
         when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(character1, character2));
         List<org.deschutter.omen.character.Character> characters = characterRepository.findByUserId(123);
@@ -39,7 +39,7 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindById_returnsCorrectResult() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", new RaceEntity("RaceName1"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", new LineageEntity("RaceName1"));
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1"))));
@@ -48,7 +48,7 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindById_hasRaceName() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1",new RaceEntity("RaceName1"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1",new LineageEntity("RaceName1"));
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("raceName",is("RaceName1"))));

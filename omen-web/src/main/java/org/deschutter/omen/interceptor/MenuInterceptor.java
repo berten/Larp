@@ -42,42 +42,27 @@ public class MenuInterceptor implements HandlerInterceptor {
 
     private MenuDTO createLoggedInMenu(String contextPath, List<CharacterDTO> characters) {
         List<MenuItemDTO> eposMenu = new ArrayList<>();
-        eposMenu.add(new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"));
-        eposMenu.add(new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"));
-        eposMenu.add(new MenuItemDTO(null, null));
         MenuItemDTO karakters = new MenuItemDTO("Karakters", null);
         eposMenu.add(karakters);
         for (CharacterDTO character : characters) {
             karakters.add(new MenuItemDTO(character.getCharacterName(), contextPath + "/epos/character/" + character.getId()));
         }
         eposMenu.add(new MenuItemDTO(null, null));
-        eposMenu.add(createEternipediaMenuItem());
 
         return createMenu(contextPath, eposMenu.toArray(new MenuItemDTO[eposMenu.size()]));
     }
 
-    private MenuItemDTO createEternipediaMenuItem() {
-        return new MenuItemDTO("Eternipedia", "http://eternipedia.eternica.com");
-    }
 
     private MenuDTO createMenu(String contextPath, MenuItemDTO[] eposMenuArray) {
         return new MenuDTO()
                 .addMenuItem(createHomeMenuItem(contextPath))
-                .addMenuItem(new MenuItemDTO("Epos", null), eposMenuArray)
-                .addMenuItem(createIronFistMenuItem());
+                .addMenuItem(new MenuItemDTO("Epos", null), eposMenuArray);
     }
 
     private MenuDTO createNotLoggedInMenu(String contextPath) {
         MenuItemDTO[] eposMenuArray = {
-                new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen"),
-                new MenuItemDTO("Basisdocumenten", contextPath + "/epos/basisdocumenten"),
-                new MenuItemDTO(null, null),
-                createEternipediaMenuItem()};
+                new MenuItemDTO("Algemeen", contextPath + "/epos/algemeen")};
         return createMenu(contextPath, eposMenuArray);
-    }
-
-    private MenuItemDTO createIronFistMenuItem() {
-        return new MenuItemDTO("Iron Fist", "http://ironfist.eternica.com");
     }
 
     private MenuItemDTO createHomeMenuItem(String contextPath) {

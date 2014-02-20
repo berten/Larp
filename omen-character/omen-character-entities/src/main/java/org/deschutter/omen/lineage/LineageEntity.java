@@ -1,21 +1,21 @@
-package org.deschutter.omen.race;
+package org.deschutter.omen.lineage;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "RACE")
-public class RaceEntity {
+public class LineageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;
 
-    public RaceEntity() {
+    public LineageEntity() {
     }
 
-    public RaceEntity(String name) {
+    public LineageEntity(String name) {
 
         this.name = name;
     }
