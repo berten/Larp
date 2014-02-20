@@ -29,7 +29,7 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 		userDao.deleteAll();
         UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
         UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
-        LineageEntity race = lineageDao.save(new LineageEntity("Mensch"));
+        LineageEntity race = lineageDao.save(new LineageEntity("Mannheimer"));
         characterDao.save(new CharacterEntity(berten, "Nilus", race));
         characterDao.save(new CharacterEntity(tim, "Bors", race));
     }
