@@ -18,14 +18,14 @@ import static org.junit.Assert.assertThat;
 @ContextConfiguration(classes = {DBConfig.class})
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class RaceDaoTest {
+public class LineageDaoTest {
     @Autowired
-    private RaceDao raceDao;
+    private LineageDao lineageDao;
 
     @Test
     public void save_findOne() {
-        LineageEntity entity = raceDao.save(new LineageEntity("name"));
-        LineageEntity retrieved = raceDao.findOne(entity.getId());
+        LineageEntity entity = lineageDao.save(new LineageEntity("name"));
+        LineageEntity retrieved = lineageDao.findOne(entity.getId());
         assertThat(retrieved, allOf(hasProperty("name", is(entity.getName())), hasProperty("id", is(entity.getId()))));
     }
 }

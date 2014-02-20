@@ -3,7 +3,7 @@ package org.deschutter.omen.init;
 import org.deschutter.omen.character.CharacterDao;
 import org.deschutter.omen.character.CharacterEntity;
 import org.deschutter.omen.lineage.LineageEntity;
-import org.deschutter.omen.race.RaceDao;
+import org.deschutter.omen.race.LineageDao;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 	private CharacterDao characterDao;
 
     @Autowired
-    private RaceDao raceDao;
+    private LineageDao lineageDao;
 
 
     @Override
@@ -29,7 +29,7 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 		userDao.deleteAll();
         UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
         UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
-        LineageEntity race = raceDao.save(new LineageEntity("Mensch"));
+        LineageEntity race = lineageDao.save(new LineageEntity("Mensch"));
         characterDao.save(new CharacterEntity(berten, "Nilus", race));
         characterDao.save(new CharacterEntity(tim, "Bors", race));
     }

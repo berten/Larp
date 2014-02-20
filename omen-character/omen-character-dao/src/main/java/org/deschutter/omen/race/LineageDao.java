@@ -4,5 +4,5 @@ import org.deschutter.omen.lineage.LineageEntity;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface RaceDao extends CrudRepository<LineageEntity, Long> {
+public interface LineageDao extends CrudRepository<LineageEntity, Long> {
 }

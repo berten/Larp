@@ -2,7 +2,7 @@ package org.deschutter.omen.character;
 
 import org.deschutter.database.init.DBConfig;
 import org.deschutter.omen.lineage.LineageEntity;
-import org.deschutter.omen.race.RaceDao;
+import org.deschutter.omen.race.LineageDao;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.junit.Test;
@@ -28,13 +28,13 @@ public class CharacterDaoTest {
     @Autowired
     UserDao userDao;
     @Autowired
-    private RaceDao raceDao;
+    private LineageDao lineageDao;
 
     @Test
     public void testFindByUserEntityId() throws Exception {
         UserEntity userEntity = userDao.save(new UserEntity("username", "password"));
-        CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1", raceDao.save(new LineageEntity("RaceName1"))));
-        CharacterEntity character2 = characterDao.save(new CharacterEntity(userEntity, "Character2", raceDao.save(new LineageEntity("RaceName1"))));
+        CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1", lineageDao.save(new LineageEntity("RaceName1"))));
+        CharacterEntity character2 = characterDao.save(new CharacterEntity(userEntity, "Character2", lineageDao.save(new LineageEntity("RaceName1"))));
         Iterable<CharacterEntity> entities = characterDao.findAll();
         assertThat(entities, hasItem(character));
         assertThat(entities, hasItem(character2));
@@ -42,7 +42,7 @@ public class CharacterDaoTest {
 
     @Test
     public void findOne() {
-        CharacterEntity character = characterDao.save(new CharacterEntity(userDao.save(new UserEntity("username", "password")), "Character1", raceDao.save(new LineageEntity("RaceName1"))));
+        CharacterEntity character = characterDao.save(new CharacterEntity(userDao.save(new UserEntity("username", "password")), "Character1", lineageDao.save(new LineageEntity("RaceName1"))));
         CharacterEntity returnedEntity = characterDao.findOne(character.getId());
         assertThat(returnedEntity, is(character));
     }
