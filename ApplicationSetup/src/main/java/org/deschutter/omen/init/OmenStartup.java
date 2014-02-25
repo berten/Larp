@@ -2,8 +2,8 @@ package org.deschutter.omen.init;
 
 import org.deschutter.omen.character.CharacterDao;
 import org.deschutter.omen.character.CharacterEntity;
-import org.deschutter.omen.character.ClassDao;
-import org.deschutter.omen.character.ClassEntity;
+import org.deschutter.omen.clazz.ClassDao;
+import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.user.UserDao;

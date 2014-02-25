@@ -1,5 +1,6 @@
 package org.deschutter.omen.character;
 
+import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.user.UserEntity;
 import org.junit.Test;

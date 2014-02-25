@@ -1,4 +1,4 @@
-package org.deschutter.omen.character;
+package org.deschutter.omen.clazz;
 
 import org.springframework.data.repository.CrudRepository;
 

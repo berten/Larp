@@ -1,4 +1,4 @@
-package org.deschutter.omen.character;
+package org.deschutter.omen.clazz;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -7,10 +7,6 @@ import static org.hamcrest.Matchers.is;
 import javax.transaction.Transactional;
 
 import org.deschutter.database.init.DBConfig;
-import org.deschutter.omen.lineage.LineageEntity;
-import org.deschutter.omen.race.LineageDao;
-import org.deschutter.user.UserDao;
-import org.deschutter.user.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

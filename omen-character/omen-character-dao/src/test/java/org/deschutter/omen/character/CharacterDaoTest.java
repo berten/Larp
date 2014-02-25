@@ -1,6 +1,8 @@
 package org.deschutter.omen.character;
 
 import org.deschutter.database.init.DBConfig;
+import org.deschutter.omen.clazz.ClassDao;
+import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.user.UserDao;
