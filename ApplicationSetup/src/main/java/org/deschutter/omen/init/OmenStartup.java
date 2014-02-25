@@ -6,6 +6,8 @@ import org.deschutter.omen.clazz.ClassDao;
 import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
+import org.deschutter.omen.religion.ReligionDao;
+import org.deschutter.omen.religion.ReligionEntity;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private ClassDao classDao;
+    @Autowired
+    private ReligionDao religionDao;
 
 
     @Override
@@ -34,11 +38,13 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
         lineageDao.deleteAll();
         classDao.deleteAll();
         userDao.deleteAll();
+        religionDao.deleteAll();
         UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
         UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
         LineageEntity race = lineageDao.save(new LineageEntity("Mannheimer"));
         ClassEntity warrior = classDao.save(new ClassEntity("Warrior"));
-        characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior));
-        characterDao.save(new CharacterEntity(tim, "Bors", race, warrior));
+        ReligionEntity religion = religionDao.save(new ReligionEntity("Hymir"));
+        characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior, religion));
+        characterDao.save(new CharacterEntity(tim, "Bors", race, warrior, religion));
     }
 }

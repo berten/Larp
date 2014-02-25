@@ -5,6 +5,7 @@ import org.deschutter.omen.character.CharacterDao;
 import org.deschutter.omen.character.CharacterService;
 import org.deschutter.omen.clazz.ClassDao;
 import org.deschutter.omen.race.LineageDao;
+import org.deschutter.omen.religion.ReligionDao;
 import org.deschutter.user.UserDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,11 @@ public class TestConfig {
     @Bean
     ClassDao classDao() {
         return mock(ClassDao.class);
+    }
+
+    @Bean
+    ReligionDao religionDao() {
+        return mock(ReligionDao.class);
     }
 
     @Bean

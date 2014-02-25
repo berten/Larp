@@ -15,6 +15,10 @@
         <div class="col-sm-3">Klasse</div>
         <div class="col-sm-3">${character.className}</div>
     </div>
+    <div class="row">
+        <div class="col-sm-3">Geloof</div>
+        <div class="col-sm-3">${character.religionName}</div>
+    </div>
 </div>
 </body>
 </html>

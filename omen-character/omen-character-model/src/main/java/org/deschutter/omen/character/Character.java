@@ -6,13 +6,16 @@ public class Character {
     private String characterName;
     private String lineageName;
     private String className;
+    private String religionName;
 
-    public Character(long id, String characterName, String lineageName, String className) {
+    public Character(long id, String characterName, String lineageName, String className, String religionName) {
         this.id = id;
         this.characterName = characterName;
         this.lineageName = lineageName;
         this.className = className;
+        this.religionName = religionName;
     }
+
 
     public Character() {
     }
@@ -47,6 +50,14 @@ public class Character {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getReligionName() {
+        return religionName;
+    }
+
+    public void setReligionName(String religionName) {
+        this.religionName = religionName;
     }
 
     @Override

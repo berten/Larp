@@ -6,12 +6,14 @@ public class CharacterDTO {
     private String characterName;
     private String lineageName;
     private String className;
+    private String religionName;
 
-    public CharacterDTO(Long id, String characterName, String lineageName, String className) {
+    public CharacterDTO(Long id, String characterName, String lineageName, String className, String religionName) {
         this.id = id;
         this.characterName = characterName;
         this.lineageName = lineageName;
         this.className = className;
+        this.religionName = religionName;
     }
 
     public CharacterDTO() {
@@ -49,6 +51,14 @@ public class CharacterDTO {
         this.className = className;
     }
 
+    public String getReligionName() {
+        return religionName;
+    }
+
+    public void setReligionName(String religionName) {
+        this.religionName = religionName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +71,7 @@ public class CharacterDTO {
         if (className != null ? !className.equals(that.className) : that.className != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (lineageName != null ? !lineageName.equals(that.lineageName) : that.lineageName != null) return false;
+        if (religionName != null ? !religionName.equals(that.religionName) : that.religionName != null) return false;
 
         return true;
     }
@@ -71,6 +82,7 @@ public class CharacterDTO {
         result = 31 * result + (characterName != null ? characterName.hashCode() : 0);
         result = 31 * result + (lineageName != null ? lineageName.hashCode() : 0);
         result = 31 * result + (className != null ? className.hashCode() : 0);
+        result = 31 * result + (religionName != null ? religionName.hashCode() : 0);
         return result;
     }
 }
