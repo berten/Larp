@@ -2,6 +2,8 @@ package org.deschutter.omen.init;
 
 import org.deschutter.omen.character.CharacterDao;
 import org.deschutter.omen.character.CharacterEntity;
+import org.deschutter.omen.character.ClassDao;
+import org.deschutter.omen.character.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.user.UserDao;
@@ -22,15 +24,21 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private LineageDao lineageDao;
 
+    @Autowired
+    private ClassDao classDao;
+
 
     @Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		characterDao.deleteAll();
-		userDao.deleteAll();
+        lineageDao.deleteAll();
+        classDao.deleteAll();
+        userDao.deleteAll();
         UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
         UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
         LineageEntity race = lineageDao.save(new LineageEntity("Mannheimer"));
-        characterDao.save(new CharacterEntity(berten, "Nilus", race));
-        characterDao.save(new CharacterEntity(tim, "Bors", race));
+        ClassEntity warrior = classDao.save(new ClassEntity("Warrior"));
+        characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior));
+        characterDao.save(new CharacterEntity(tim, "Bors", race, warrior));
     }
 }

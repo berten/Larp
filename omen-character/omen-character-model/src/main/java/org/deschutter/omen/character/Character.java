@@ -5,11 +5,13 @@ public class Character {
     private long id;
     private String characterName;
     private String lineageName;
+    private String className;
 
-    public Character(long id, String characterName, String lineageName) {
+    public Character(long id, String characterName, String lineageName, String className) {
         this.id = id;
         this.characterName = characterName;
         this.lineageName = lineageName;
+        this.className = className;
     }
 
     public Character() {
@@ -37,6 +39,14 @@ public class Character {
 
     public void setCharacterName(String characterName) {
         this.characterName = characterName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     @Override

@@ -28,6 +28,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
 
     @Override
     public Character findById(long id) {
-        return new ModelMapper().map(characterDao.findOne(id), Character.class);
+        CharacterEntity entity = characterDao.findOne(id);
+        return new ModelMapper().map(entity, Character.class);
     }
 }

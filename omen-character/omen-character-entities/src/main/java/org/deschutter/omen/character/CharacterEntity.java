@@ -12,19 +12,21 @@ public class CharacterEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    private UserEntity userEntity;
-
     private String name;
 
     @ManyToOne
+    private UserEntity userEntity;
+    @ManyToOne
     private LineageEntity lineage;
+    @ManyToOne
+    private ClassEntity classEntity;
 
 
-    public CharacterEntity(UserEntity userEntity, String name, LineageEntity lineage) {
+    public CharacterEntity(UserEntity userEntity, String name, LineageEntity lineage, ClassEntity classEntity) {
         this.userEntity = userEntity;
         this.name = name;
         this.lineage = lineage;
+        this.classEntity = classEntity;
     }
 
     public LineageEntity getLineage() {
@@ -32,6 +34,10 @@ public class CharacterEntity {
     }
 
     protected CharacterEntity() {
+    }
+
+    public ClassEntity getClassEntity() {
+        return classEntity;
     }
 
     public String getName() {

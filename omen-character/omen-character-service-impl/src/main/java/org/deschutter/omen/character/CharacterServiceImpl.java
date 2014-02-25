@@ -24,6 +24,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDTO getCharacter(Long characterId) {
-        return new ModelMapper().map(characterRepository.findById(characterId), CharacterDTO.class);
+        Character character = characterRepository.findById(characterId);
+        return new ModelMapper().map(character, CharacterDTO.class);
     }
 }

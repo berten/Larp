@@ -45,8 +45,8 @@ public class MenuInterceptorTest {
 		user = mock(User.class);
 		when(user.getUserId()).thenReturn(123L);
 		when(characterService.getCharactersForUserID(123L)).thenReturn(
-				Arrays.asList(new CharacterDTO(2L, "CharacterName1", "Lineage1"), new CharacterDTO(2L,
-						"CharacterName2", "Lineage1")));
+				Arrays.asList(new CharacterDTO(2L, "CharacterName1", "Lineage1", "Class"), new CharacterDTO(2L,
+						"CharacterName2", "Lineage1", "Class")));
 	}
 
 	@Test
@@ -66,8 +66,8 @@ public class MenuInterceptorTest {
 	@Test
 	public void index_LoggedIn_GetsBasicMenu() throws Exception {
 		when(characterService.getCharactersForUserID(123L)).thenReturn(
-				Arrays.asList(new CharacterDTO(1L, "CharacterName1", "Lineage1"), new CharacterDTO(2L,
-						"CharacterName2", "Lineage1")));
+				Arrays.asList(new CharacterDTO(1L, "CharacterName1", "Lineage1", "Class"), new CharacterDTO(2L,
+						"CharacterName2", "Lineage1", "Class")));
 		ResultActions index =
 				mockMvc.perform(get("/index").principal(new UsernamePasswordAuthenticationToken(user, "password")))
 						.andExpect(status().isOk()).andExpect(view().name("index"));

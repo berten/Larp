@@ -29,12 +29,14 @@ public class CharacterDaoTest {
     UserDao userDao;
     @Autowired
     private LineageDao lineageDao;
+    @Autowired
+    private ClassDao classDao;
 
     @Test
     public void testFindByUserEntityId() throws Exception {
         UserEntity userEntity = userDao.save(new UserEntity("username", "password"));
-        CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1", lineageDao.save(new LineageEntity("Lineage1"))));
-        CharacterEntity character2 = characterDao.save(new CharacterEntity(userEntity, "Character2", lineageDao.save(new LineageEntity("Lineage1"))));
+        CharacterEntity character = characterDao.save(new CharacterEntity(userEntity, "Character1", lineageDao.save(new LineageEntity("Lineage1")), classDao.save(new ClassEntity("Class1"))));
+        CharacterEntity character2 = characterDao.save(new CharacterEntity(userEntity, "Character2", lineageDao.save(new LineageEntity("Lineage1")), classDao.save(new ClassEntity("Class2"))));
         Iterable<CharacterEntity> entities = characterDao.findAll();
         assertThat(entities, hasItem(character));
         assertThat(entities, hasItem(character2));
@@ -42,7 +44,7 @@ public class CharacterDaoTest {
 
     @Test
     public void findOne() {
-        CharacterEntity character = characterDao.save(new CharacterEntity(userDao.save(new UserEntity("username", "password")), "Character1", lineageDao.save(new LineageEntity("Lineage1"))));
+        CharacterEntity character = characterDao.save(new CharacterEntity(userDao.save(new UserEntity("username", "password")), "Character1", lineageDao.save(new LineageEntity("Lineage1")), classDao.save(new ClassEntity("Class1"))));
         CharacterEntity returnedEntity = characterDao.findOne(character.getId());
         assertThat(returnedEntity, is(character));
     }
