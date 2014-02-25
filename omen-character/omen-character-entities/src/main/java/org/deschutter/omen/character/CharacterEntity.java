@@ -3,6 +3,7 @@ package org.deschutter.omen.character;
 import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.religion.ReligionEntity;
+import org.deschutter.omen.wealth.WealthEntity;
 import org.deschutter.user.UserEntity;
 
 import javax.persistence.*;
@@ -24,14 +25,17 @@ public class CharacterEntity {
     private ClassEntity classEntity;
     @ManyToOne
     private ReligionEntity religion;
+    @ManyToOne
+    private WealthEntity wealth;
 
 
-    public CharacterEntity(UserEntity userEntity, String name, LineageEntity lineage, ClassEntity classEntity, ReligionEntity religion) {
+    public CharacterEntity(UserEntity userEntity, String name, LineageEntity lineage, ClassEntity classEntity, ReligionEntity religion, WealthEntity wealth) {
         this.userEntity = userEntity;
         this.name = name;
         this.lineage = lineage;
         this.classEntity = classEntity;
         this.religion = religion;
+        this.wealth = wealth;
     }
 
     public CharacterEntity() {
@@ -78,5 +82,9 @@ public class CharacterEntity {
 
     public ReligionEntity getReligion() {
         return religion;
+    }
+
+    public WealthEntity getWealth() {
+        return wealth;
     }
 }

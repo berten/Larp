@@ -3,6 +3,7 @@ package org.deschutter.omen.character;
 import org.deschutter.omen.clazz.ClassEntity;
 import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.religion.ReligionEntity;
+import org.deschutter.omen.wealth.WealthEntity;
 import org.deschutter.user.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CharacterRepositoryImplTest {
+    private final LineageEntity lineageEntity = new LineageEntity("Lineage1");
+    private final ClassEntity classEntity = new ClassEntity("Class1");
+    private final ReligionEntity religionEntity = new ReligionEntity("ReligionName");
+    private final WealthEntity wealthEntity = new WealthEntity("WealthName");
     @InjectMocks
     private CharacterRepository characterRepository = new CharacterRepositoryImpl();
     @Mock
@@ -28,20 +33,20 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindByUserId() throws Exception {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character1 = new CharacterEntity(user, "CharacterName1", new LineageEntity("Lineage1"), new ClassEntity("Class1"), new ReligionEntity("ReligionName"));
+        CharacterEntity character1 = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character1.setId(1L);
-        CharacterEntity character2 = new CharacterEntity(user, "CharacterName2", new LineageEntity("Lineage1"), new ClassEntity("Class1"), new ReligionEntity("ReligionName"));
+        CharacterEntity character2 = new CharacterEntity(user, "CharacterName2", lineageEntity, classEntity, religionEntity, wealthEntity);
         character2.setId(2L);
         when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(character1, character2));
         List<org.deschutter.omen.character.Character> characters = characterRepository.findByUserId(123);
-        assertThat(characters, hasItem(new Character(1L, "CharacterName1", "Lineage1", "Class", "ReligionName")));
-        assertThat(characters, hasItem(new Character(2L, "CharacterName2", "Lineage1", "Class", "ReligionName")));
+        assertThat(characters, hasItem(new Character(1L, "CharacterName1", "Lineage1", "Class", "ReligionName", "WealthName")));
+        assertThat(characters, hasItem(new Character(2L, "CharacterName2", "Lineage1", "Class", "ReligionName", "WealthName")));
     }
 
     @Test
     public void testFindById_returnsCorrectResult() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", new LineageEntity("Lineage1"), new ClassEntity("Class1"), new ReligionEntity("ReligionName"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1"))));
@@ -50,7 +55,7 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindById_hasRaceName() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1",new LineageEntity("Lineage1"), new ClassEntity("Class1"), new ReligionEntity("ReligionName"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("lineageName",is("Lineage1"))));
@@ -59,18 +64,27 @@ public class CharacterRepositoryImplTest {
     @Test
     public void testFindById_hasClazzName() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1",new LineageEntity("Lineage1"),new ClassEntity("Class1"),new ReligionEntity("ReligionName"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("className",is("Class1"))));
     }
 
     @Test
-    public void testFindById_hasReligion() {
+    public void testFindById_hasReligionName() {
         UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1",new LineageEntity("Lineage1"),new ClassEntity("Class1"),new ReligionEntity("ReligionName"));
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("religionName",is("ReligionName"))));
+    }
+
+    @Test
+    public void testFindById_hasWealthName() {
+        UserEntity user = new UserEntity("user1", "pass1");
+        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
+        character.setId(1L);
+        when(characterDao.findOne(1L)).thenReturn(character);
+        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("wealthName",is("WealthName"))));
     }
 }

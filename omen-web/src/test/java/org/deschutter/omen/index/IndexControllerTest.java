@@ -42,7 +42,7 @@ public class IndexControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
         user = mock(User.class);
         when(user.getUserId()).thenReturn(123L);
-        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1", "Lineage1", "Class", "ReligionName"), new CharacterDTO(2L, "CharacterName2", "Lineage1", "Class", "ReligionName")));
+        when(characterService.getCharactersForUserID(123L)).thenReturn(Arrays.asList(new CharacterDTO(2L, "CharacterName1", "Lineage1", "Class", "ReligionName", "WealthName"), new CharacterDTO(2L, "CharacterName2", "Lineage1", "Class", "ReligionName", "WealthName")));
     }
 
     @Test

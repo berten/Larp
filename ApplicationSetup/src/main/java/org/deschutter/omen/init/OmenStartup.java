@@ -8,6 +8,8 @@ import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.omen.religion.ReligionDao;
 import org.deschutter.omen.religion.ReligionEntity;
+import org.deschutter.omen.wealth.WealthDao;
+import org.deschutter.omen.wealth.WealthEntity;
 import org.deschutter.user.UserDao;
 import org.deschutter.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,21 +32,39 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
     private ClassDao classDao;
     @Autowired
     private ReligionDao religionDao;
+    @Autowired
+    private WealthDao wealthDao;
 
 
     @Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		characterDao.deleteAll();
+        clearAllTables();
+
+        UserEntity berten = createUserEntity("Berten", "pwBerten");
+        UserEntity tim = createUserEntity("Tim", "pwTim");
+
+        LineageEntity race = lineageDao.save(new LineageEntity("Mannheimer"));
+
+        ClassEntity warrior = classDao.save(new ClassEntity("strijder"));
+
+        ReligionEntity religion = religionDao.save(new ReligionEntity("Hymir"));
+
+        WealthEntity wealthEntity = wealthDao.save(new WealthEntity("Midden"));
+
+        characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior, religion, wealthEntity));
+        characterDao.save(new CharacterEntity(tim, "Bors", race, warrior, religion, wealthEntity));
+    }
+
+    private UserEntity createUserEntity(String userName, String passWord) {
+        return userDao.save(new UserEntity(userName, passWord));
+    }
+
+    private void clearAllTables() {
+        characterDao.deleteAll();
         lineageDao.deleteAll();
         classDao.deleteAll();
         userDao.deleteAll();
         religionDao.deleteAll();
-        UserEntity berten = userDao.save(new UserEntity("Berten", "pwBerten"));
-        UserEntity tim = userDao.save(new UserEntity("Tim", "pwTim"));
-        LineageEntity race = lineageDao.save(new LineageEntity("Mannheimer"));
-        ClassEntity warrior = classDao.save(new ClassEntity("Warrior"));
-        ReligionEntity religion = religionDao.save(new ReligionEntity("Hymir"));
-        characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior, religion));
-        characterDao.save(new CharacterEntity(tim, "Bors", race, warrior, religion));
+        wealthDao.deleteAll();
     }
 }

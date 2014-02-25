@@ -19,6 +19,10 @@
         <div class="col-sm-3">Geloof</div>
         <div class="col-sm-3">${character.religionName}</div>
     </div>
+    <div class="row">
+        <div class="col-sm-3">Rijkdom</div>
+        <div class="col-sm-3">${character.wealthName}</div>
+    </div>
 </div>
 </body>
 </html>

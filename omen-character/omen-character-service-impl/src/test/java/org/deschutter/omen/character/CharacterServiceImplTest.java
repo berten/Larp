@@ -24,16 +24,16 @@ public class CharacterServiceImplTest {
 
     @Test
     public void getCharactersForUserId() {
-        Character character1 = new Character(1L, "CharacterName1", "Lineage1", "Class1","ReligionName");
-        Character character2 = new Character(2L, "CharacterName2", "Lineage1", "Class2","ReligionName");
+        Character character1 = new Character(1L, "CharacterName1", "Lineage1", "Class1","ReligionName","WealthName");
+        Character character2 = new Character(2L, "CharacterName2", "Lineage1", "Class2","ReligionName","WealthName");
         when(characterRepository.findByUserId(123L)).thenReturn(Arrays.asList(character1, character2));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1", "Lineage1", "Class1", "ReligionName")));
-        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2", "Lineage1", "Class2", "ReligionName")));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName")));
+        assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2", "Lineage1", "Class2", "ReligionName", "WealthName")));
     }
 
     @Test
     public void getCharacter () {
-        Character character = new Character(1L, "CharacterName1", "Lineage1","Class","ReligionName");
+        Character character = new Character(1L, "CharacterName1", "Lineage1","Class","ReligionName","WealthName");
         when(characterRepository.findById(1L)).thenReturn(character);
         assertThat(characterService.getCharacter(1L), allOf(isA(CharacterDTO.class),hasProperty("id", is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("lineageName",is("Lineage1")),hasProperty("className",is("Class")),hasProperty("religionName",is("ReligionName"))));
     }
