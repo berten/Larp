@@ -45,46 +45,38 @@ public class CharacterRepositoryImplTest {
 
     @Test
     public void testFindById_returnsCorrectResult() {
-        UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
-        character.setId(1L);
-        when(characterDao.findOne(1L)).thenReturn(character);
+        createCharacterAndMockDaoCall();
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1"))));
     }
 
     @Test
     public void testFindById_hasRaceName() {
-        UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
-        character.setId(1L);
-        when(characterDao.findOne(1L)).thenReturn(character);
+        createCharacterAndMockDaoCall();
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("lineageName",is("Lineage1"))));
     }
 
     @Test
     public void testFindById_hasClazzName() {
-        UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
-        character.setId(1L);
-        when(characterDao.findOne(1L)).thenReturn(character);
+        createCharacterAndMockDaoCall();
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("className",is("Class1"))));
     }
 
     @Test
     public void testFindById_hasReligionName() {
-        UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
-        character.setId(1L);
-        when(characterDao.findOne(1L)).thenReturn(character);
+        createCharacterAndMockDaoCall();
         assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("religionName",is("ReligionName"))));
     }
 
     @Test
     public void testFindById_hasWealthName() {
+        createCharacterAndMockDaoCall();
+        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("wealthName",is("WealthName"))));
+    }
+
+    private void createCharacterAndMockDaoCall() {
         UserEntity user = new UserEntity("user1", "pass1");
         CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("wealthName",is("WealthName"))));
     }
 }
