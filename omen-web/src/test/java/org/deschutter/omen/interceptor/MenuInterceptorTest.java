@@ -57,41 +57,16 @@ public class MenuInterceptorTest {
 				"menu",
 				hasProperty(
 						"menuItems",
-						allOf(hasItemWithDisplayAndUrl("Home", "/index"),
-								hasItem(
-                                        allOf(
-                                            hasProperty("display", is("Ingame")),
-                                            hasProperty("url", isEmptyOrNullString()),
-                                            hasProperty(
-                                                    "menuItems",
-                                                    allOf(  hasItemWithDisplayAndUrl("Volkeren", "/ingame/lineage"),
-                                                            hasItemWithDisplayAndUrl("Klassen", "/ingame/classes"),
-                                                            hasItemWithDisplayAndUrl("Heimar", "/ingame/heimar"),
-                                                            hasItemWithDisplayAndUrl("Organisaties","/ingame/organisations"),
-                                                            hasItemWithDisplayAndUrl("Vijanden","/ingame/enemies"),
-                                                            hasItemWithDisplayAndUrl("Kalender","/ingame/calendar"),
-                                                            hasItemWithDisplayAndUrl("Taal","/ingame/language")
-                                                    )
-                                            )
-                                        )
-                                ),
-                                hasItem(
-                                        allOf(
-                                                hasProperty("display", is("Outgame")),
-                                                hasProperty("url", isEmptyOrNullString()),
-                                                hasProperty(
-                                                        "menuItems",
-                                                        allOf(  hasItemWithDisplayAndUrl("Larp", "/outgame/larp"),
-                                                                hasItemWithDisplayAndUrl("Richtlijnen", "/outgame/rules"),
-                                                                hasItemWithDisplayAndUrl("Spelershandboek", "/outgame/manual"),
-                                                                hasItemWithDisplayAndUrl("Forum","/outgame/forum"),
-                                                                hasItemWithDisplayAndUrl("Evenementen","/outgame/events")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                hasItemWithDisplayAndUrl("Contact", "/contact")
-                        ))));
+						allOf(hasHomeMenu(),
+								hasItemWithDisplayAndMenuItems("Ingame",
+										hasItemWithDisplayAndUrl("Volkeren", "/ingame/lineage"),
+										hasItemWithDisplayAndUrl("Klassen", "/ingame/classes"),
+										hasItemWithDisplayAndUrl("Heimar", "/ingame/heimar"),
+										hasItemWithDisplayAndUrl("Organisaties", "/ingame/organisations"),
+										hasItemWithDisplayAndUrl("Vijanden", "/ingame/enemies"),
+										hasItemWithDisplayAndUrl("Kalender", "/ingame/calendar"),
+										hasItemWithDisplayAndUrl("Taal", "/ingame/language")), hasOutGameMenu(),
+								hasContactMenu()))));
 	}
 
 	@Test
@@ -104,63 +79,50 @@ public class MenuInterceptorTest {
 				mockMvc.perform(get("/index").principal(new UsernamePasswordAuthenticationToken(user, "password")))
 						.andExpect(status().isOk()).andExpect(view().name("index"));
 
-        index.andExpect(model()
-                .attribute(
-                    "menu",
-                    hasProperty(
-                            "menuItems",
-                            allOf(
-                                    hasItemWithDisplayAndUrl("Home", "/index"),
-                                    hasItem(
-                                            allOf(
-                                                    hasProperty("display", is("Ingame")),
-                                                    hasProperty("url", isEmptyOrNullString()),
-                                                    hasProperty(
-                                                            "menuItems",
-                                                            allOf(hasItemWithDisplayAndUrl("Volkeren", "/ingame/lineage"),
-                                                                    hasItemWithDisplayAndUrl("Klassen", "/ingame/classes"),
-                                                                    hasItemWithDisplayAndUrl("Heimar", "/ingame/heimar"),
-                                                                    hasItemWithDisplayAndUrl("Organisaties","/ingame/organisations"),
-                                                                    hasItemWithDisplayAndUrl("Vijanden","/ingame/enemies"),
-                                                                    hasItemWithDisplayAndUrl("Kalender","/ingame/calendar"),
-                                                                    hasItemWithDisplayAndUrl("Taal","/ingame/language"),
-                                                                    hasBlankLine(),
-                                                                    hasItem(
-                                                                            allOf(
-                                                                                hasProperty("display", is("Karakters")),
-                                                                                hasProperty("url", isEmptyOrNullString()),
-                                                                                hasProperty("menuItems",
-                                                                                    allOf(
-                                                                                            hasItemWithDisplayAndUrl("CharacterName1","/epos/character/1"),
-                                                                                            hasItemWithDisplayAndUrl("CharacterName2","/epos/character/2")
-                                                                                    )
-                                                                                )
-                                                                            )
-                                                                    )
-                                                            )
-                                                    )
-                                            )
-                                    ),
-                                    hasItem(
-                                            allOf(
-                                                    hasProperty("display", is("Outgame")),
-                                                    hasProperty("url", isEmptyOrNullString()),
-                                                    hasProperty(
-                                                            "menuItems",
-                                                            allOf(hasItemWithDisplayAndUrl("Larp", "/outgame/larp"),
-                                                                    hasItemWithDisplayAndUrl("Richtlijnen", "/outgame/rules"),
-                                                                    hasItemWithDisplayAndUrl("Spelershandboek", "/outgame/manual"),
-                                                                    hasItemWithDisplayAndUrl("Forum","/outgame/forum"),
-                                                                    hasItemWithDisplayAndUrl("Evenementen","/outgame/events")
-                                                            )
-                                                    )
-                                            )
-                                    ),
-                                    hasItemWithDisplayAndUrl("Contact", "/contact")
-                            )
-                    )
-                )
-        );
+		index.andExpect(model().attribute("menu",
+                hasProperty(
+                        "menuItems",
+                        allOf(hasHomeMenu(),
+                                hasItemWithDisplayAndMenuItems("Ingame",
+                                        hasItemWithDisplayAndUrl("Volkeren", "/ingame/lineage"),
+                                        hasItemWithDisplayAndUrl("Klassen", "/ingame/classes"),
+                                        hasItemWithDisplayAndUrl("Heimar", "/ingame/heimar"),
+                                        hasItemWithDisplayAndUrl("Organisaties", "/ingame/organisations"),
+                                        hasItemWithDisplayAndUrl("Vijanden", "/ingame/enemies"),
+                                        hasItemWithDisplayAndUrl("Kalender", "/ingame/calendar"),
+                                        hasItemWithDisplayAndUrl("Taal", "/ingame/language"), hasBlankLine(),
+                                        hasCharacterMenu()
+                                )
+                                , hasOutGameMenu(),
+                                hasContactMenu()))));
+	}
+
+	private Matcher<Iterable<? super Object>> hasContactMenu() {
+		return hasItemWithDisplayAndUrl("Contact", "/contact");
+	}
+
+	private Matcher<? super Iterable<? super Object>> hasOutGameMenu() {
+		return hasItemWithDisplayAndMenuItems("Outgame", hasItemWithDisplayAndUrl("Larp", "/outgame/larp"),
+				hasItemWithDisplayAndUrl("Richtlijnen", "/outgame/rules"),
+				hasItemWithDisplayAndUrl("Spelershandboek", "/outgame/manual"),
+				hasItemWithDisplayAndUrl("Forum", "/outgame/forum"),
+				hasItemWithDisplayAndUrl("Evenementen", "/outgame/events"));
+	}
+
+	private Matcher<? super Iterable<? super Object>> hasCharacterMenu() {
+		return hasItemWithDisplayAndMenuItems("Karakters",
+				hasItemWithDisplayAndUrl("CharacterName1", "/epos/character/1"),
+				hasItemWithDisplayAndUrl("CharacterName2", "/epos/character/2"));
+	}
+
+	private Matcher<Iterable<? super Object>> hasHomeMenu() {
+		return hasItemWithDisplayAndUrl("Home", "/index");
+	}
+
+	private Matcher<? super Iterable<? super Object>> hasItemWithDisplayAndMenuItems(String display,
+			Matcher... matchers) {
+		return hasItem(allOf(hasProperty("display", is(display)), hasProperty("url", isEmptyOrNullString()),
+				hasProperty("menuItems", allOf(matchers))));
 	}
 
 	private Matcher<Iterable<? super Object>> hasBlankLine() {
