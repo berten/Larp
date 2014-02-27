@@ -15,6 +15,7 @@
         <module>omen-character</module>
         <module>ApplicationSetup</module>
         <module>Database</module>
+        <module>omen-skill</module>
     </modules>
 
     <dependencies>

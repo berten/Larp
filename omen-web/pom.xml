@@ -54,6 +54,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.deschutter</groupId>
+            <artifactId>Database</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.deschutter.omen</groupId>
             <artifactId>omen-character-entities</artifactId>
             <version>${project.parent.version}</version>
@@ -70,11 +75,6 @@
             <artifactId>omen-character-repository</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.deschutter</groupId>
-            <artifactId>Database</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.deschutter.omen</groupId>
@@ -96,6 +96,47 @@
         <dependency>
             <groupId>org.deschutter.omen</groupId>
             <artifactId>omen-character-model</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-entities</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-dao</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-repository</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-repository-impl</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-service</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-service-impl</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.deschutter.omen</groupId>
+            <artifactId>omen-skill-model</artifactId>
             <version>${project.parent.version}</version>
             <scope>runtime</scope>
         </dependency>
