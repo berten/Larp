@@ -1,7 +1,16 @@
 package org.deschutter.omen.character;
 
-/**
- * Created by berten on 3/4/14.
- */
+
 public interface Character {
+    Long getId();
+
+    String getCharacterName();
+
+    String getLineageName();
+
+    String getClassName();
+
+    String getReligionName();
+
+    String getWealthName();
 }

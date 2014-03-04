@@ -38,14 +38,52 @@ public class CharacterServiceImplTest {
         assertThat(characterService.getCharacter(1L), allOf(isA(CharacterDTO.class),hasProperty("id", is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("lineageName",is("Lineage1")),hasProperty("className",is("Class")),hasProperty("religionName",is("ReligionName"))));
     }
 
-    private class CharacterStub extends CharacterImpl {
+    private class CharacterStub implements Character {
+        private final Long id;
+        private final String characterName;
+        private final String lineageName;
+        private final String className;
+        private final String religionName;
+        private final String wealthName;
+
         public CharacterStub(Long id, String characterName, String lineageName, String className, String religionName, String wealthName) {
-            setId(id);
-            setCharacterName(characterName);
-            setLineageName(lineageName);
-            setClassName(className);
-            setReligionName(religionName);
-            setWealthName(wealthName);
+
+            this.id = id;
+            this.characterName = characterName;
+            this.lineageName = lineageName;
+            this.className = className;
+            this.religionName = religionName;
+            this.wealthName = wealthName;
+        }
+
+        @Override
+        public Long getId() {
+            return id;
+        }
+
+        @Override
+        public String getCharacterName() {
+            return characterName;
+        }
+
+        @Override
+        public String getLineageName() {
+            return lineageName;
+        }
+
+        @Override
+        public String getClassName() {
+            return className;
+        }
+
+        @Override
+        public String getReligionName() {
+            return religionName;
+        }
+
+        @Override
+        public String getWealthName() {
+            return wealthName;
         }
     }
 }
