@@ -38,7 +38,7 @@ public class CharacterServiceImplTest {
         assertThat(characterService.getCharacter(1L), allOf(isA(CharacterDTO.class),hasProperty("id", is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("lineageName",is("Lineage1")),hasProperty("className",is("Class")),hasProperty("religionName",is("ReligionName"))));
     }
 
-    private class CharacterStub extends Character {
+    private class CharacterStub extends CharacterImpl {
         public CharacterStub(Long id, String characterName, String lineageName, String className, String religionName, String wealthName) {
             setId(id);
             setCharacterName(characterName);

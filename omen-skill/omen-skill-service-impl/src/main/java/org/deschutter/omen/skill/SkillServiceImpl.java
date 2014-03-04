@@ -14,6 +14,4 @@ public class SkillServiceImpl implements SkillService {
     public SkillDTO getSkillById(Long skillId) {
         return new ModelMapper().map(skillRepository.getSkillById(skillId),SkillDTO.class);
     }
-
-
 }

@@ -26,7 +26,7 @@ public class SkillServiceImplTest {
 
 	@Before
 	public void setUp() {
-		skill = new Skill();
+		skill = new SkillImpl();
 		when(skillRepository.getSkillById(1L)).thenReturn(skill);
 	}
 

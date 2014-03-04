@@ -16,6 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -27,63 +28,91 @@ public class CharacterRepositoryImplTest {
     private final ClassEntity classEntity = new ClassEntity("Class1");
     private final ReligionEntity religionEntity = new ReligionEntity("ReligionName");
     private final WealthEntity wealthEntity = new WealthEntity("WealthName");
+    private final UserEntity userEntity= new UserEntity("user1", "pass1");
     @InjectMocks
     private CharacterRepository characterRepository = new CharacterRepositoryImpl();
     @Mock
     private CharacterDao characterDao;
+    @Mock
+    private CharacterFactory characterFactory;
 
     @Test
     public void testFindByUserId() throws Exception {
-        UserEntity user = new UserEntity("user1", "pass1");
+        
+        UserEntity user = userEntity;
         CharacterEntity character1 = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
         character1.setId(1L);
         CharacterEntity character2 = new CharacterEntity(user, "CharacterName2", lineageEntity, classEntity, religionEntity, wealthEntity);
         character2.setId(2L);
         when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(character1, character2));
-        List<org.deschutter.omen.character.Character> characters = characterRepository.findByUserId(123);
 
-        assertThat(characters, hasCharacter(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName"));
-        assertThat(characters, hasCharacter(2L, "CharacterName2", "Lineage1", "Class1", "ReligionName", "WealthName"));
-    }
+        StubbedCharacter char1 = new StubbedCharacter(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName");
+        when(characterFactory.create(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName")).thenReturn(char1);
 
-    private Matcher<Iterable<? super Character>> hasCharacter(long value, String characterName1, String lineage1, String class1, String religionName, String wealthName) {
-        return hasItem(Matchers.<Character>allOf(hasProperty("id", is(value)), hasProperty("characterName", is(characterName1)), hasProperty("lineageName", is(lineage1)), hasProperty("className", is(class1)), hasProperty("religionName", is(religionName)), hasProperty("wealthName", is(wealthName))));
+        StubbedCharacter char2 = new StubbedCharacter(2L, "CharacterName2", "Lineage1", "Class1", "ReligionName", "WealthName");
+        when(characterFactory.create(2L, "CharacterName2", "Lineage1", "Class1", "ReligionName", "WealthName")).thenReturn(char2);
+
+        List<Character> characters = characterRepository.findByUserId(123);
+
+        assertThat(characters, hasItem(char1));
+        assertThat(characters, hasItem(char2));
     }
 
     @Test
     public void testFindById_returnsCorrectResult() {
-        createCharacterAndMockDaoCall();
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("characterName",is("CharacterName1"))));
+        StubbedCharacter char1 = new StubbedCharacter(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName");
+        when(characterFactory.create(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName")).thenReturn(char1);
+
+        createCharacterAndMockDaoCall("CharacterName1", userEntity, lineageEntity, classEntity, religionEntity, wealthEntity);
+        assertEquals(char1, characterRepository.findById(1L));
     }
 
-    @Test
-    public void testFindById_hasRaceName() {
-        createCharacterAndMockDaoCall();
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("lineageName",is("Lineage1"))));
-    }
-
-    @Test
-    public void testFindById_hasClazzName() {
-        createCharacterAndMockDaoCall();
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("className",is("Class1"))));
-    }
-
-    @Test
-    public void testFindById_hasReligionName() {
-        createCharacterAndMockDaoCall();
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("religionName",is("ReligionName"))));
-    }
-
-    @Test
-    public void testFindById_hasWealthName() {
-        createCharacterAndMockDaoCall();
-        assertThat(characterRepository.findById(1L),allOf(hasProperty("id",is(1L)),hasProperty("wealthName",is("WealthName"))));
-    }
-
-    private void createCharacterAndMockDaoCall() {
-        UserEntity user = new UserEntity("user1", "pass1");
-        CharacterEntity character = new CharacterEntity(user, "CharacterName1", lineageEntity, classEntity, religionEntity, wealthEntity);
+    private void createCharacterAndMockDaoCall(String characterName, UserEntity user, LineageEntity lineageEntity, ClassEntity classEntity, ReligionEntity religionEntity, WealthEntity wealthEntity) {
+        CharacterEntity character = new CharacterEntity(user, characterName, lineageEntity, classEntity, religionEntity, wealthEntity);
         character.setId(1L);
         when(characterDao.findOne(1L)).thenReturn(character);
+    }
+
+	private class StubbedCharacter implements Character {
+        private final Long id;
+        private final String characterName;
+        private final String lineageName;
+        private final String className;
+        private final String religionName;
+        private final String wealthName;
+
+        public StubbedCharacter(Long id, String characterName, String lineageName, String className, String religionName,
+				String wealthName) {
+            this.id = id;
+            this.characterName = characterName;
+            this.lineageName = lineageName;
+            this.className = className;
+            this.religionName = religionName;
+            this.wealthName = wealthName;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getCharacterName() {
+            return characterName;
+        }
+
+        public String getLineageName() {
+            return lineageName;
+        }
+
+        public String getClassName() {
+            return className;
+        }
+
+        public String getReligionName() {
+            return religionName;
+        }
+
+        public String getWealthName() {
+            return wealthName;
+        }
     }
 }

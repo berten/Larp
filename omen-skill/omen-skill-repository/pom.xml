@@ -11,5 +11,11 @@
 
     <artifactId>omen-skill-repository</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>org.deschutter.omen</groupId>
+        <artifactId>omen-skill-model</artifactId>
+        <version>${project.parent.version}</version>
+    </dependency>
+</dependencies>
 </project>
