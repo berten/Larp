@@ -44,7 +44,7 @@ public class MenuInterceptor implements HandlerInterceptor {
     private MenuDTO createLoggedInMenu(String contextPath, List<CharacterDTO> characters) {
         MenuItemDTO karakterMenu = new MenuItemDTO("Karakters", null);
         for (CharacterDTO character : characters) {
-            karakterMenu.add(new MenuItemDTO(character.getCharacterName(), contextPath + "/epos/character/" + character.getId()));
+            karakterMenu.add(new MenuItemDTO(character.getCharacterName(), contextPath + "/omen/character/" + character.getId()));
         }
         List<MenuItemDTO> basicIngameMenu = createBasicIngameMenu(contextPath);
         basicIngameMenu.add(new BlankMenuItem());

@@ -111,8 +111,8 @@ public class MenuInterceptorTest {
 
 	private Matcher<? super Iterable<? super Object>> hasCharacterMenu() {
 		return hasItemWithDisplayAndMenuItems("Karakters",
-				hasItemWithDisplayAndUrl("CharacterName1", "/epos/character/1"),
-				hasItemWithDisplayAndUrl("CharacterName2", "/epos/character/2"));
+				hasItemWithDisplayAndUrl("CharacterName1", "/omen/character/1"),
+				hasItemWithDisplayAndUrl("CharacterName2", "/omen/character/2"));
 	}
 
 	private Matcher<Iterable<? super Object>> hasHomeMenu() {

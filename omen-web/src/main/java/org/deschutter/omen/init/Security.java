@@ -40,7 +40,7 @@ public class Security extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").permitAll().and().httpBasic().and().authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/epos/**").hasRole("USER").anyRequest()
+                .antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/omen/**").hasRole("USER").anyRequest()
                 .authenticated();
     }
 }

@@ -5,6 +5,8 @@ import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.religion.ReligionEntity;
 import org.deschutter.omen.wealth.WealthEntity;
 import org.deschutter.user.UserEntity;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -39,8 +41,13 @@ public class CharacterRepositoryImplTest {
         character2.setId(2L);
         when(characterDao.findByUserEntityId(123L)).thenReturn(Arrays.asList(character1, character2));
         List<org.deschutter.omen.character.Character> characters = characterRepository.findByUserId(123);
-        assertThat(characters, hasItem(new Character(1L, "CharacterName1", "Lineage1", "Class", "ReligionName", "WealthName")));
-        assertThat(characters, hasItem(new Character(2L, "CharacterName2", "Lineage1", "Class", "ReligionName", "WealthName")));
+
+        assertThat(characters, hasCharacter(1L, "CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName"));
+        assertThat(characters, hasCharacter(2L, "CharacterName2", "Lineage1", "Class1", "ReligionName", "WealthName"));
+    }
+
+    private Matcher<Iterable<? super Character>> hasCharacter(long value, String characterName1, String lineage1, String class1, String religionName, String wealthName) {
+        return hasItem(Matchers.<Character>allOf(hasProperty("id", is(value)), hasProperty("characterName", is(characterName1)), hasProperty("lineageName", is(lineage1)), hasProperty("className", is(class1)), hasProperty("religionName", is(religionName)), hasProperty("wealthName", is(wealthName))));
     }
 
     @Test

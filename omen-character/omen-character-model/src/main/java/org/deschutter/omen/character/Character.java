@@ -9,16 +9,6 @@ public class Character {
     private String religionName;
     private String wealthName;
 
-    public Character(long id, String characterName, String lineageName, String className, String religionName, String wealthName) {
-        this.id = id;
-        this.characterName = characterName;
-        this.lineageName = lineageName;
-        this.className = className;
-        this.religionName = religionName;
-        this.wealthName = wealthName;
-    }
-
-
     public Character() {
     }
 

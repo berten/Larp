@@ -39,19 +39,13 @@ public class CharacterControllerTest {
 
     @Test
     public void testCharacterView_LoggedIn_HasUserAccess_AccessGranted() throws Exception {
-        when(characterService.getCharacter(1L)).thenReturn(new CharacterDTO(1L, "CharacterName1", "Lineage1","Class","ReligionName","WealthName"));
-        mockMvc.perform(get("/epos/character/1"))
+        CharacterDTO characterDTO = new CharacterDTO();
+        when(characterService.getCharacter(1L)).thenReturn(characterDTO);
+        mockMvc.perform(get("/omen/character/1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("epos/character"))
+                .andExpect(view().name("omen/character"))
                 .andExpect(
                         model().attribute("character",
-                                allOf(
-                                        hasProperty("id", is(1L)),
-                                        hasProperty("characterName", is("CharacterName1")),
-                                        hasProperty("lineageName", is("Lineage1")),
-                                        hasProperty("className",is("Class")),
-                                        hasProperty("religionName",is("ReligionName")),
-                                        hasProperty("wealthName",is("WealthName"))
-                                )));
+                                is(characterDTO)));
     }
 }

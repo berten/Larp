@@ -24,8 +24,8 @@ public class CharacterServiceImplTest {
 
     @Test
     public void getCharactersForUserId() {
-        Character character1 = new Character(1L, "CharacterName1", "Lineage1", "Class1","ReligionName","WealthName");
-        Character character2 = new Character(2L, "CharacterName2", "Lineage1", "Class2","ReligionName","WealthName");
+        Character character1 = new CharacterStub(1L, "CharacterName1", "Lineage1", "Class1","ReligionName","WealthName");
+        Character character2 = new CharacterStub(2L, "CharacterName2", "Lineage1", "Class2","ReligionName","WealthName");
         when(characterRepository.findByUserId(123L)).thenReturn(Arrays.asList(character1, character2));
         assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(1L,"CharacterName1", "Lineage1", "Class1", "ReligionName", "WealthName")));
         assertThat(characterService.getCharactersForUserID(123L), hasItem(new CharacterDTO(2L,"CharacterName2", "Lineage1", "Class2", "ReligionName", "WealthName")));
@@ -33,8 +33,19 @@ public class CharacterServiceImplTest {
 
     @Test
     public void getCharacter () {
-        Character character = new Character(1L, "CharacterName1", "Lineage1","Class","ReligionName","WealthName");
+        Character character = new CharacterStub(1L, "CharacterName1", "Lineage1","Class","ReligionName","WealthName");
         when(characterRepository.findById(1L)).thenReturn(character);
         assertThat(characterService.getCharacter(1L), allOf(isA(CharacterDTO.class),hasProperty("id", is(1L)),hasProperty("characterName",is("CharacterName1")),hasProperty("lineageName",is("Lineage1")),hasProperty("className",is("Class")),hasProperty("religionName",is("ReligionName"))));
+    }
+
+    private class CharacterStub extends Character {
+        public CharacterStub(Long id, String characterName, String lineageName, String className, String religionName, String wealthName) {
+            setId(id);
+            setCharacterName(characterName);
+            setLineageName(lineageName);
+            setClassName(className);
+            setReligionName(religionName);
+            setWealthName(wealthName);
+        }
     }
 }

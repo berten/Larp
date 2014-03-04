@@ -6,6 +6,7 @@ import org.deschutter.omen.character.CharacterService;
 import org.deschutter.omen.clazz.ClassDao;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.omen.religion.ReligionDao;
+import org.deschutter.omen.skill.SkillService;
 import org.deschutter.omen.wealth.WealthDao;
 import org.deschutter.user.UserDao;
 import org.springframework.context.annotation.Bean;
@@ -55,5 +56,10 @@ public class TestConfig {
     @Bean
     CharacterService characterService() {
         return mock(CharacterService.class);
+    }
+
+    @Bean
+    SkillService skillService() {
+        return mock(SkillService.class);
     }
 }
