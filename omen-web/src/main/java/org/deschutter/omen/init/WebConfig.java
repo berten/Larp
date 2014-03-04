@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -13,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @ComponentScan(basePackages = {"org.deschutter"}, includeFilters = {@ComponentScan.Filter(value = Controller.class,
-        type = FilterType.ANNOTATION)}, excludeFilters = {@ComponentScan.Filter(value = Configuration.class)})
+        type = FilterType.ANNOTATION)}, excludeFilters = {@ComponentScan.Filter(value = Configuration.class),@ComponentScan.Filter(value = Service.class),@ComponentScan.Filter(value = Repository.class)})
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
