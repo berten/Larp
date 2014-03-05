@@ -1,6 +1,6 @@
 package org.deschutter.authentication.user;
 
-import static junit.framework.Assert.assertSame;
+import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.when;
 
 import org.deschutter.user.UserDao;
