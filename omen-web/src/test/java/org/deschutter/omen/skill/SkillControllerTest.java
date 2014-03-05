@@ -1,5 +1,7 @@
 package org.deschutter.omen.skill;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,6 +19,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.Arrays;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { WebConfig.class, TestConfig.class })
@@ -37,7 +41,16 @@ public class SkillControllerTest {
 	public void testCharacterView() throws Exception {
 		SkillDTO skillDTO = new SkillDTO();
 		when(skillService.getSkillById(1L)).thenReturn(skillDTO);
-		mockMvc.perform(get("/omen/skill/1")).andExpect(status().isOk()).andExpect(view().name("omen/skill"))
+		mockMvc.perform(get("/omen/skill/1")).andExpect(status().isOk()).andExpect(view().name("omen/skill/detail"))
 				.andExpect(model().attribute("skill", is(skillDTO)));
 	}
+
+    @Test
+    public void list() throws Exception {
+        SkillDTO skillDTO = new SkillDTO();
+        SkillDTO skillDTO2 = new SkillDTO();
+        when(skillService.getAllSkills()).thenReturn(Arrays.asList(skillDTO,skillDTO2));
+        mockMvc.perform(get("/omen/skill/list")).andExpect(status().isOk()).andExpect(view().name("omen/skill/list"))
+                .andExpect(model().attribute("skills", allOf(hasItem(skillDTO), hasItem(skillDTO2))));
+    }
 }

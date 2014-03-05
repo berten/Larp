@@ -1,5 +1,8 @@
 package org.deschutter.omen.skill;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -8,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Arrays;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SkillRepositoryImplTest {
@@ -21,14 +26,36 @@ public class SkillRepositoryImplTest {
 	private SkillFactory skillFactory;
 
 	@Test
-	public void blaat() {
-        when(skillDao.findOne(1L)).thenReturn(new SkillEntity(1L, "name", "description"));
-		StubbedSkill stubbedSkill = new StubbedSkill(1L, "name", "description");
-		when(skillFactory.create(1L, "name", "description")).thenReturn(stubbedSkill);
+	public void getSkillById() {
+        SkillEntity skill1 = new SkillEntity("name", "description");
+        skill1.setId(1L);
+        when(skillDao.findOne(1L)).thenReturn(skill1);
+        StubbedSkill stubbedSkill = createStubbedSkillAndMockFactory(1L, "name", "description");
 		assertEquals(stubbedSkill, skillRepository.getSkillById(1L));
 	}
 
-	private class StubbedSkill implements Skill {
+    @Test
+    public void getAllSkills () {
+        SkillEntity skill1 = new SkillEntity("name", "description") ;
+        skill1.setId(1L);
+        SkillEntity skill2=new SkillEntity("name2", "description2") ;
+        skill2.setId(2L);
+        when(skillDao.findAll()).thenReturn(Arrays.asList(skill1, skill2));
+
+
+        StubbedSkill stubbedSkill = createStubbedSkillAndMockFactory(1L, "name", "description");
+        StubbedSkill stubbedSkill2 = createStubbedSkillAndMockFactory(2L, "name2", "description2");
+
+        assertThat(skillRepository.getAllSkills(),allOf(hasItem(stubbedSkill),hasItem(stubbedSkill2)));
+    }
+
+    private StubbedSkill createStubbedSkillAndMockFactory(long id, String name, String description) {
+        StubbedSkill stubbedSkill = new StubbedSkill(id, name, description);
+        when(skillFactory.create(id, name, description)).thenReturn(stubbedSkill);
+        return stubbedSkill;
+    }
+
+    private class StubbedSkill implements Skill {
 		private final Long id;
 		private final String name;
 		private final String description;

@@ -8,6 +8,8 @@ import org.deschutter.omen.lineage.LineageEntity;
 import org.deschutter.omen.race.LineageDao;
 import org.deschutter.omen.religion.ReligionDao;
 import org.deschutter.omen.religion.ReligionEntity;
+import org.deschutter.omen.skill.SkillDao;
+import org.deschutter.omen.skill.SkillEntity;
 import org.deschutter.omen.wealth.WealthDao;
 import org.deschutter.omen.wealth.WealthEntity;
 import org.deschutter.user.UserDao;
@@ -34,6 +36,8 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
     private ReligionDao religionDao;
     @Autowired
     private WealthDao wealthDao;
+    @Autowired
+    private SkillDao skillDao;
 
 
     @Override
@@ -53,6 +57,12 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
 
         characterDao.save(new CharacterEntity(berten, "Nilus", race, warrior, religion, wealthEntity));
         characterDao.save(new CharacterEntity(tim, "Bors", race, warrior, religion, wealthEntity));
+
+        skillDao.save(new SkillEntity("Adelstand","Je bent geboren in de adelstand."));
+        skillDao.save(new SkillEntity("Afbakening 1","De Druïde kan een bepaald, beperkt stuk wildernis opeisen als zijn territorium. Men kan dit slechts 1x per\n" +
+                "evenement initiëren: indien verdreven uit zijn territorium kan de Druïde dit niet meer doen tijdens een\n" +
+                "evenement. Men ‘kiest’ een bepaald stuk wildernis uit het zicht van enige bebouwing en speelt uit dat men\n" +
+                "een tiental grote vierkante meters afbakent (zegenen, stenen leggen, etc..)"));
     }
 
     private UserEntity createUserEntity(String userName, String passWord) {
@@ -66,5 +76,6 @@ public class OmenStartup implements ApplicationListener<ContextRefreshedEvent> {
         userDao.deleteAll();
         religionDao.deleteAll();
         wealthDao.deleteAll();
+        skillDao.deleteAll();
     }
 }

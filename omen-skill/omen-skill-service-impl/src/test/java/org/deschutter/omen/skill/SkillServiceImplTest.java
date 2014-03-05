@@ -2,11 +2,12 @@ package org.deschutter.omen.skill;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
+import java.util.Arrays;
+
+import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,31 +23,56 @@ public class SkillServiceImplTest {
 	@Mock
 	private SkillRepository skillRepository;
 
-    private Skill skill;
-
-	@Before
-	public void setUp() {
-		skill = new SkillImpl(1L,"SkillName","SkillDescription");
-		when(skillRepository.getSkillById(1L)).thenReturn(skill);
-	}
-
 	@Test
 	public void getSkillById_returnsDTO() {
-		assertThat(skillService.getSkillById(1L), isA(SkillDTO.class));
+		Skill skill = new StubbedSkill(1L, "SkillName", "SkillDescription");
+		when(skillRepository.getSkillById(1L)).thenReturn(skill);
+		assertThat(skillService.getSkillById(1L), matchingDto(1L, "SkillName", "SkillDescription"));
 	}
 
-	@Test
-	public void getSkillById_returnsDTO_WithCorrectId() {
-		assertThat(skillService.getSkillById(1L), hasProperty("id", is(1L)));
+    @Test
+    public void getAllSkills_returnsListOfDTOS() {
+        Skill skill1 = new StubbedSkill(1L, "SkillName", "SkillDescription");
+        Skill skill2 = new StubbedSkill(2L, "SkillName2", "SkillDescription2");
+        when(skillRepository.getAllSkills()).thenReturn(Arrays.asList(skill1, skill2));
+        assertThat(
+                skillService.getAllSkills(),
+                allOf(
+                        hasItem(matchingDto(1L, "SkillName", "SkillDescription")),
+                        hasItem(matchingDto(2L, "SkillName2", "SkillDescription2"))
+                )
+        );
+    }
+
+	private Matcher<SkillDTO> matchingDto(long id, String skillName, String skillDescription) {
+		return allOf(isA(SkillDTO.class), hasProperty("id", is(id)), hasProperty("name", is(skillName)),
+				hasProperty("description", is(skillDescription)));
 	}
 
-	@Test
-	public void getSkillById_returnsDTO_WithCorrectName() {
-		assertThat(skillService.getSkillById(1L), hasProperty("name", is("SkillName")));
-	}
+    private class StubbedSkill implements Skill {
+        private final Long id;
+        private final String name;
+        private final String description;
 
-	@Test
-	public void getSkillById_returnsDTO_WithCorrectDescription() {
-		assertThat(skillService.getSkillById(1L), hasProperty("description", is("SkillDescription")));
-	}
+        public StubbedSkill(Long id, String name, String description) {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+        }
+
+        @Override
+        public Long getId() {
+            return id;
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String getDescription() {
+            return description;
+        }
+    }
 }
