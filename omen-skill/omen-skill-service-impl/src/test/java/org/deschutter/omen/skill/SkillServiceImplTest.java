@@ -26,7 +26,7 @@ public class SkillServiceImplTest {
 
 	@Before
 	public void setUp() {
-		skill = new SkillImpl();
+		skill = new SkillImpl(1L,"SkillName","SkillDescription");
 		when(skillRepository.getSkillById(1L)).thenReturn(skill);
 	}
 
@@ -37,19 +37,16 @@ public class SkillServiceImplTest {
 
 	@Test
 	public void getSkillById_returnsDTO_WithCorrectId() {
-		skill.setId(1L);
 		assertThat(skillService.getSkillById(1L), hasProperty("id", is(1L)));
 	}
 
 	@Test
 	public void getSkillById_returnsDTO_WithCorrectName() {
-		skill.setName("SkillName");
 		assertThat(skillService.getSkillById(1L), hasProperty("name", is("SkillName")));
 	}
 
 	@Test
 	public void getSkillById_returnsDTO_WithCorrectDescription() {
-		skill.setDescription("SkillDescription");
 		assertThat(skillService.getSkillById(1L), hasProperty("description", is("SkillDescription")));
 	}
 }
